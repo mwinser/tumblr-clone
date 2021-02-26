@@ -82,7 +82,7 @@ function Login() {
                     />
                     {emailExists && 
                     (<input 
-                        type="text" 
+                        type="password" 
                         value={password}
                         placeholder="Password" 
                         className="text-md mt-2 p-2 rounded"
@@ -105,6 +105,14 @@ function Login() {
                     </button>
                     )
                 }
+                {emailExists &&
+                    (<p href="#" className="text-white text-sm text-center p-2">
+                        Forgot your password?
+                    </p>
+                    )
+                }
+
+
 
                 <div className="flex justify-around items-center mt-16">
                     <button className="bg-black rounded p-2 text-sm font-bold text-white border border-white">
