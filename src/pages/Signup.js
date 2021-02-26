@@ -6,11 +6,10 @@ import * as ROUTES from '../constants/routes'
 
 function Signup() {
     const {firebase} = useContext(FirebaseContext)
-    const {emailAddress, setEmailAddress} = useContext(Context)
+    const {emailAddress, setEmailAddress, blogName, setBlogName} = useContext(Context)
     const history = useHistory()
     
     const [password, setPassword] = useState('')
-    const [blogName, setBlogName] = useState('')
     const [error, setError] = useState('')
 
     const isValid = emailAddress !== '' || password !== '' || blogName !== '' 

@@ -24,7 +24,6 @@ function Login() {
         .collection('users')
         .where('emailAddress', '==', emailAddress)
         .get();
-
         if (result.docs.length ===0) {
             history.push(ROUTES.SIGN_UP)
         } else {
