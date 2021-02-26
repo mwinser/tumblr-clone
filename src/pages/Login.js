@@ -17,7 +17,8 @@ function Login() {
     const isValidPassword = password !== ''
 
     const handleEmailSubmit = async (event)=>{
-         event.preventDefault()
+        event.preventDefault()
+        setError('')
         const result = await firebase
         .firestore()
         .collection('users')
@@ -33,6 +34,7 @@ function Login() {
  
     const handlePasswordSubmit = async (event) => {
         event.preventDefault();
+        setError('')
         
         try {
             await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
@@ -90,18 +92,19 @@ function Login() {
                     <button 
                         disabled={emailExists?!isValidPassword:!isValidEmail}
                         type="submit" 
-                        className={`bg-blue-300 rounded p-2 font-bold mt-2 ${emailExists?(!isValidPassword && 'cursor-not-allowed opacity-50'):(!isValidEmail && 'cursor-not-allowed opacity-50')}`}
+                        className={`bg-blue-300 rounded p-2 font-bold mt-2 ${emailExists?( (!isValidPassword || !isValidEmail) && 'cursor-not-allowed opacity-50'):(!isValidEmail && 'cursor-not-allowed opacity-50')}`}
                         >
                         {emailExists ? "Log in" : "Next"}
                     </button>
-                    {emailExists &&
+                </form>
+                {emailExists &&
                     (<button 
                         className="bg-green-500 rounded p-2 font-bold mt-2"
                         >
                         Send me a magic link
                     </button>
-                    )}
-                </form>
+                    )
+                }
 
                 <div className="flex justify-around items-center mt-16">
                     <button className="bg-black rounded p-2 text-sm font-bold text-white border border-white">
