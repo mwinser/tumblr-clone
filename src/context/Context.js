@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const Context = React.createContext(null)
 
 function ContextProvider({children}) {
+    const [emailAddress, setEmailAddress] = useState('')
+
+
+
     return (
-        <Context.Provider value = {{}}>
+        <Context.Provider value = {{emailAddress, setEmailAddress}}>
             {children}
         </Context.Provider>
     )
