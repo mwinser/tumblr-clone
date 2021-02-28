@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {Link, useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import {Context} from '../context/Context'
 
@@ -8,7 +8,7 @@ function ForgotPassword() {
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
     const {resetPassword} = useContext(Context)
-    const history = useHistory()
+
 
     async function handleResetPassword () {
         
