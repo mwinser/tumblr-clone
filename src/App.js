@@ -13,16 +13,18 @@ const ForgotPassword = lazy(()=> import('./pages/ForgotPassword'))
 
 function App() {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <Switch>
-        <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard}/>
-        <Route path={ROUTES.LOGIN} component={Login}/>
-        <Route path={ROUTES.SIGN_UP} component={Signup}/>
-        <Route path={ROUTES.FORGOT_PASSWORD} component={ForgotPassword}/>
-        <PrivateRoute path={ROUTES.PROFILE} component={Profile}/>
-        <PrivateRoute component={NotFound}/>
-      </Switch>
-    </Suspense>
+    <div  className="relative w-full h-screen bg-blue-900 text-white">
+      <Suspense fallback={<p>Loading...</p>}>
+        <Switch>
+          <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard}/>
+          <Route path={ROUTES.LOGIN} component={Login}/>
+          <Route path={ROUTES.SIGN_UP} component={Signup}/>
+          <Route path={ROUTES.FORGOT_PASSWORD} component={ForgotPassword}/>
+          <PrivateRoute path={ROUTES.PROFILE} component={Profile}/>
+          <PrivateRoute component={NotFound}/>
+        </Switch>
+      </Suspense>
+    </div>
 
   );
 }
