@@ -5,7 +5,7 @@ import {Context} from "../context/Context"
 import * as ROUTES from '../constants/routes'
 
 function Login() {
-    const {firebase} = useContext(FirebaseContext)
+    const {firebaseApp} = useContext(FirebaseContext)
     const {emailAddress, setEmailAddress} = useContext(Context)
     const history = useHistory()
     
@@ -19,7 +19,7 @@ function Login() {
     const handleEmailSubmit = async (event)=>{
         event.preventDefault()
         setError('')
-        const result = await firebase
+        const result = await firebaseApp
         .firestore()
         .collection('users')
         .where('emailAddress', '==', emailAddress)
@@ -36,7 +36,7 @@ function Login() {
         setError('')
         
         try {
-            await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
+            await firebaseApp.auth().signInWithEmailAndPassword(emailAddress, password);
             history.push(ROUTES.DASHBOARD);
         } catch (error) {
             setEmailAddress('');

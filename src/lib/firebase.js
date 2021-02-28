@@ -1,18 +1,19 @@
+import firebase from "firebase/app"
+import "firebase/auth"
+import "firebase/firestore"
+
+const firebaseApp = firebase.initializeApp({
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
+});
+
+const { FieldValue } = firebase.firestore;
 
 
-const config = {
-    apiKey: "AIzaSyAPyr2xxAksmKnEbbcG9bNoyzx6uxyayrs",
-    authDomain: "bumblr-f293c.firebaseapp.com",
-    projectId: "bumblr-f293c",
-    storageBucket: "bumblr-f293c.appspot.com",
-    messagingSenderId: "18245726243",
-    appId: "1:18245726243:web:4150f78c495db7aaedc196"
-  };
-  
-const firebase = window.firebase.initializeApp(config);
-const { FieldValue } = window.firebase.firestore;
 
 
-
-
-  export { firebase, FieldValue };
+export { firebaseApp, FieldValue };

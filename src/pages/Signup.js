@@ -5,7 +5,7 @@ import {Context} from "../context/Context"
 import * as ROUTES from '../constants/routes'
 
 function Signup() {
-    const {firebase} = useContext(FirebaseContext)
+    const {firebaseApp} = useContext(FirebaseContext)
     const {emailAddress, setEmailAddress, blogName, setBlogName} = useContext(Context)
     const history = useHistory()
     
@@ -19,13 +19,13 @@ function Signup() {
         event.preventDefault()
         setError('')
         try {
-            const createdUserResult = await firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
+            const createdUserResult = await firebaseApp.auth().createUserWithEmailAndPassword(emailAddress, password)
 
             await createdUserResult.user.updateProfile({
                 displayName: blogName
             })
 
-            await firebase.firestore().collection('users').add({
+            await firebaseApp.firestore().collection('users').add({
                 userId: createdUserResult.user.uid,
                 username: blogName,
                 emailAddress: emailAddress,
