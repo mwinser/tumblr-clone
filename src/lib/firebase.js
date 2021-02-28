@@ -12,8 +12,8 @@ const firebaseApp = firebase.initializeApp({
 });
 
 const { FieldValue } = firebase.firestore;
+const auth = firebaseApp.auth()
 
 
 
-
-export { firebaseApp, FieldValue };
+export { firebaseApp, FieldValue , auth};

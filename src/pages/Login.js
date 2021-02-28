@@ -1,12 +1,12 @@
 import React, {useState, useContext} from 'react'
-import {useHistory} from 'react-router-dom'
-import FirebaseContext from '../context/firebase'
+import {useHistory, Link} from 'react-router-dom'
+import {useFirebase} from '../context/firebase'
 import {Context} from "../context/Context"
 import * as ROUTES from '../constants/routes'
 
 function Login() {
-    const {firebaseApp} = useContext(FirebaseContext)
-    const {emailAddress, setEmailAddress} = useContext(Context)
+    const {firebaseApp} = useFirebase()
+    const {emailAddress, setEmailAddress, login} = useContext(Context)
     const history = useHistory()
     
     const [emailExists, setEmailExists] = useState(false)
@@ -36,7 +36,7 @@ function Login() {
         setError('')
         
         try {
-            await firebaseApp.auth().signInWithEmailAndPassword(emailAddress, password);
+            await login(emailAddress, password);
             history.push(ROUTES.DASHBOARD);
         } catch (error) {
             setEmailAddress('');
@@ -55,9 +55,11 @@ function Login() {
                     </p>
                     <input type="text" placeholder="Search" className="bg-transparent bg-white bg-opacity-25 rounded placeholder-gray-100 p-1 m-2"/>
                 </div>
+
                 <button className={`rounded p-2 font-bold ${emailExists? "bg-green-500" : "bg-blue-300"}`}>
-                {emailExists ? "Log in" : "Sign up"}
-                </button>
+                <Link to={emailExists ? ROUTES.LOGIN : ROUTES.SIGN_UP }>
+                    {emailExists ? "Log in" : "Sign up"}
+                </Link></button>
             </nav>
             <div className="max-w-xs  p-8 flex flex-col justify-center align-center">
                 <p className="font-bold text-7xl text-center text-white mb-2" >
@@ -105,8 +107,10 @@ function Login() {
                     )
                 }
                 {emailExists &&
-                    (<p href="#" className="text-white text-sm text-center p-2">
-                        Forgot your password?
+                    (<p className="text-white text-sm text-center p-2">
+                        <Link to={ROUTES.FORGOT_PASSWORD}>
+                            Forgot your password?
+                        </Link>
                     </p>
                     )
                 }

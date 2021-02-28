@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom'
 import {ContextProvider} from './context/Context'
-import FirebaseContext from './context/firebase'
+import {FirebaseContext} from './context/firebase'
 import {firebaseApp, FieldValue} from './lib/firebase'
 import './index.css';
 import App from './App';
+
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,25 +1,27 @@
 import React, {useState, useContext} from 'react'
-import {useHistory} from 'react-router-dom'
-import FirebaseContext from '../context/firebase'
+import {useHistory, Link} from 'react-router-dom'
+import {useFirebase} from '../context/firebase'
 import {Context} from "../context/Context"
 import * as ROUTES from '../constants/routes'
 
+
 function Signup() {
-    const {firebaseApp} = useContext(FirebaseContext)
-    const {emailAddress, setEmailAddress, blogName, setBlogName} = useContext(Context)
+    const {firebaseApp} = useFirebase()
+    const {emailAddress, setEmailAddress, blogName, setBlogName, signup, currentUser} = useContext(Context)
     const history = useHistory()
     
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
-    const isValid = emailAddress !== '' || password !== '' || blogName !== '' 
-   
+    const isValid = !isLoading || emailAddress !== '' || password !== '' || blogName !== '' 
 
     const handleSubmit = async (event)=>{
         event.preventDefault()
         setError('')
         try {
-            const createdUserResult = await firebaseApp.auth().createUserWithEmailAndPassword(emailAddress, password)
+            setIsLoading(true)
+            const createdUserResult = await signup(emailAddress, password)
 
             await createdUserResult.user.updateProfile({
                 displayName: blogName
@@ -34,7 +36,7 @@ function Signup() {
                 avatar: '1',
                 dateCreated: Date.now()
             })
-
+            
             history.push(ROUTES.DASHBOARD)
 
         } catch(error) {
@@ -42,6 +44,7 @@ function Signup() {
             setPassword('')
             setError(error.message)
         }
+        setIsLoading(false)
 
     }
    
@@ -56,13 +59,14 @@ function Signup() {
                     <input type="text" placeholder="Search" className="bg-transparent bg-white bg-opacity-25 rounded placeholder-gray-100 p-1 m-2"/>
                 </div>
                 <button className='rounded p-2 font-bold bg-green-500'>
-                    Log in
+                    <Link to={ROUTES.LOGIN}>Log in</Link> 
                 </button>
             </nav>
             <div className="w-80 flex flex-col justify-center align-center">
                 <p className="font-bold text-7xl text-center text-white mb-2" >
                     tumblr
                 </p>
+                <p className="text-center text-white">{currentUser ? `${currentUser.email} signed in` : 'No user signed in'}</p>
                 {error && 
                     (<p className="text-white text-sm text-center bg-black bg-opacity-25 rounded p-2">
                         {error}
