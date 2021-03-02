@@ -11,7 +11,10 @@ module.exports = {
         'navy': '#001935'
       }),
       maxWidth: {
-        '5.5xl': '60.5rem'
+        '990px': '990px',
+        '625px': '625px',
+        '320px': '320px'
+
       }
     },
   },

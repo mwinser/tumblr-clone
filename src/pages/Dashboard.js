@@ -8,7 +8,7 @@ function Dashboard() {
         return (
         <>
             <Header/>
-            <div className="bg-navy max-w-5.5xl mx-auto mt-10 px-2 flex items-start text-white">
+            <div className="bg-navy max-w-990px mx-auto mt-10 px-2 flex items-start text-white">
                 <Feed/>
                 <Sidebar/>
 
