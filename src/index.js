@@ -2,21 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom'
 import {ContextProvider} from './context/Context'
-import {FirebaseContext} from './context/firebase'
-import {firebaseApp} from './lib/firebase'
+import {DatabaseContextProvider} from './context/databaseContext'
 import './index.css';
 import App from './App';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <FirebaseContext.Provider value={{firebaseApp}}>
-      <ContextProvider>
+    <ContextProvider>
+      <DatabaseContextProvider>
         <Router>
           <App />
         </Router>
-      </ContextProvider>
-    </FirebaseContext.Provider>
+      </DatabaseContextProvider>
+
+    </ContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

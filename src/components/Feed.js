@@ -1,22 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import {database} from '../lib/firebase'
+import React, {useContext} from 'react'
+import {DatabaseContext} from '../context/databaseContext'
 
 
 function Feed() {
+    const {photos} = useContext(DatabaseContext)
     
-    const [feed, setFeed] = useState([])
-
-    const getPhotos = async () => {
-        const response = await database.photos.get()
-        response.docs.forEach(doc=>setFeed(prevFeed=> [...prevFeed,doc.data()]))
-    }
-
-    useEffect(()=>{
-        getPhotos();
-    },[])
-   
-
-
 
     return(
         <div className="FEED flex items-end flex-col w-full">
@@ -50,8 +38,8 @@ function Feed() {
                     <div>Video</div>
                 </div>
             </div>
-            {feed.map((item)=>(
-                <div className="POSTS text-black bg-white w-10/12 rounded mb-5">
+            {photos.map((item, index)=>(
+                <div key={index} className="POSTS text-black bg-white w-10/12 rounded mb-5">
                     <div className="HEADER flex justify-between px-5 pt-4 mb-4">
                         <div className="USERNAME font-bold">{item.username}</div>
                         <div className="FOLLOW ml-2">Follow</div>
