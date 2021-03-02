@@ -1,11 +1,10 @@
 import React, {useState, useContext} from 'react'
 import {useHistory, Link} from 'react-router-dom'
-import {useFirebase} from '../context/firebase'
+import {database} from '../lib/firebase'
 import {Context} from "../context/Context"
 import * as ROUTES from '../constants/routes'
 
 function Login() {
-    const {firebaseApp} = useFirebase()
     const {emailAddress, setEmailAddress, login} = useContext(Context)
     const history = useHistory()
     
@@ -19,11 +18,7 @@ function Login() {
     const handleEmailSubmit = async (event)=>{
         event.preventDefault()
         setError('')
-        const result = await firebaseApp
-        .firestore()
-        .collection('users')
-        .where('emailAddress', '==', emailAddress)
-        .get();
+        const result = await database.users.where('emailAddress', '==', emailAddress).get();
         if (result.docs.length ===0) {
             history.push(ROUTES.SIGN_UP)
         } else {

@@ -11,9 +11,13 @@ const firebaseApp = firebase.initializeApp({
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 });
 
-const { FieldValue } = firebase.firestore;
+const firestore = firebaseApp.firestore()
+const database = {
+  users: firestore.collection('users'),
+  photos: firestore.collection('photos')
+};
 const auth = firebaseApp.auth()
 
 
 
-export { firebaseApp, FieldValue , auth};
+export { firebaseApp, database , auth};

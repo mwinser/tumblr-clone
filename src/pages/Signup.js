@@ -1,12 +1,12 @@
 import React, {useState, useContext} from 'react'
 import {useHistory, Link} from 'react-router-dom'
-import {useFirebase} from '../context/firebase'
+import {database} from '../lib/firebase'
 import {Context} from "../context/Context"
 import * as ROUTES from '../constants/routes'
 
 
 function Signup() {
-    const {firebaseApp} = useFirebase()
+    
     const {emailAddress, setEmailAddress, blogName, setBlogName, signup, currentUser} = useContext(Context)
     const history = useHistory()
     
@@ -27,7 +27,7 @@ function Signup() {
                 displayName: blogName
             })
 
-            await firebaseApp.firestore().collection('users').add({
+            await database.users.add({
                 userId: createdUserResult.user.uid,
                 username: blogName,
                 emailAddress: emailAddress,

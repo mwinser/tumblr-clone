@@ -13,7 +13,7 @@ const ForgotPassword = lazy(()=> import('./pages/ForgotPassword'))
 
 function App() {
   return (
-    <div  className="relative w-full h-screen bg-navy">
+    <div  className="relative w-full h-full bg-navy">
       <Suspense fallback={<p>Loading...</p>}>
         <Switch>
           <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard}/>
