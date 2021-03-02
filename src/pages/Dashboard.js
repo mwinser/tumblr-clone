@@ -8,9 +8,9 @@ function Dashboard() {
         return (
         <>
             <Header/>
-            <div className="bg-navy mx-8 mt-10 px-2 flex items-start text-white">
+            <div className="bg-navy max-w-5.5xl mx-auto mt-10 px-2 flex items-start text-white">
                 <Feed/>
-                <div className="SIDEBAR flex flex-col flex-start w-1/3 ml-8">
+                <div className="SIDEBAR max-w-xs flex flex-col flex-start ml-8">
                     <h1 className="text-5xl">Sidebar</h1>
 
                     <p>

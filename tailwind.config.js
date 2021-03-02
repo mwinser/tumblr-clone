@@ -9,7 +9,10 @@ module.exports = {
       backgroundColor: theme => ({
         ...theme('colors'),
         'navy': '#001935'
-      })
+      }),
+      maxWidth: {
+        '5.5xl': '60.5rem'
+      }
     },
   },
   variants: {
