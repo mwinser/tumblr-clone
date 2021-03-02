@@ -9,11 +9,15 @@ const Login = lazy(()=> import('./pages/Login'))
 const Profile = lazy(()=> import('./pages/Profile'))
 const NotFound = lazy(()=> import('./pages/NotFound'))
 const ForgotPassword = lazy(()=> import('./pages/ForgotPassword'))
+const Search = lazy(()=> import('./pages/Search'))
+const Inbox = lazy(()=> import('./pages/Inbox'))
+const Blog = lazy(()=> import('./pages/Blog'))
+const Recommended = lazy(()=> import('./pages/Recommended'))
 
 
 function App() {
   return (
-    <div  className="relative w-full h-full bg-navy">
+    <div className="relative w-full h-full bg-navy">
       <Suspense fallback={<p>Loading...</p>}>
         <Switch>
           <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard}/>
@@ -21,6 +25,10 @@ function App() {
           <Route path={ROUTES.SIGN_UP} component={Signup}/>
           <Route path={ROUTES.FORGOT_PASSWORD} component={ForgotPassword}/>
           <PrivateRoute path={ROUTES.PROFILE} component={Profile}/>
+          <PrivateRoute path={ROUTES.SEARCH} component={Search}/>
+          <PrivateRoute path={ROUTES.INBOX} component={Inbox}/>
+          <PrivateRoute path={ROUTES.BLOG} component={Blog}/>
+          <PrivateRoute path={ROUTES.RECOMMENDED} component={Recommended}/>
           <PrivateRoute component={NotFound}/>
         </Switch>
       </Suspense>
