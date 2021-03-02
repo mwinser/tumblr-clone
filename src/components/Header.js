@@ -6,7 +6,7 @@ import {Context} from '../context/Context'
 function Header(){
     const {currentUser} = useContext(Context)
     return (
-        <header className="sticky top-0, bg-navy border-b-2 border-white border-opacity-10">
+        <header className="sticky top-0 left-0 z-50 bg-navy border-b-2 border-white border-opacity-10">
             <div className="flex items-center justify-between h-14 max-w-screen-2xl text-white  mx-auto, pl-6 pr-5">
                 <div className="flex flex-start">
                     <p className="text-5xl font-bold pr-4">

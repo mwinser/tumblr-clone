@@ -8,7 +8,7 @@ function Sidebar() {
 
 
     return(
-        <div className="SIDEBAR max-w-320px flex flex-col flex-start ml-8 w-80">
+        <div className="SIDEBAR relative flex-1 max-w-320px flex flex-col flex-start ml-8 w-80">
             <div className="BLOGSCARD mb-9">
                 <div className="text-xl font-bold px-2.5 pb-2.5 border-b-2">
                     Check out these blogs
@@ -43,7 +43,7 @@ function Sidebar() {
                 </div>
                 INSERT POST HERE
             </div>
-            <div className="SPONSOREDCARD mb-9">
+            <div className="SPONSOREDCARD sticku top-16">
                 <div className="text-xl font-bold px-2.5 pb-2.5 border-b-2">
                     SPONSORED
                 </div>
