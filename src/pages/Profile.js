@@ -22,15 +22,17 @@ function Profile() {
     return (
         <>
         <Header />
-        <div className="text-white">
-            <p>Hello {currentUser && currentUser.email}!</p>
-            {error && <p className="text-red-500">{error}</p>}
-            <button 
-                onClick={handleLogout}
-                className="bg-blue-600 text-white font-bold rounded p-2"
-            >
-                Log Out
-            </button>
+        <div className="h-screen flex justify-center">
+            <div className="text-white max-w-990px flex-start flex-col justify-center mt-10">
+                <p>Hello {currentUser && currentUser.email}!</p>
+                {error && <p className="text-red-500">{error}</p>}
+                <button 
+                    onClick={handleLogout}
+                    className="bg-blue-600 text-white font-bold rounded p-2"
+                >
+                    Log Out
+                </button>
+            </div>
         </div>
         </>
     )
