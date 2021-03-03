@@ -43,12 +43,14 @@ function Post(props){
             <span className="flex-grow"></span>
             <div className="MENU">...</div>
         </div>
-        <div className="IMAGE">
-            <img 
-                className="cover"
-                src={item.imageSrc} 
-                alt="user content"/>
-        </div>
+        {item.type==='image' && (
+            <div className="IMAGE">
+                <img 
+                    className="cover"
+                    src={item.imageSrc} 
+                    alt="user content"/>
+            </div>
+        )}
         <div className="CAPTION my-4 px-5">
             {item.caption}
         </div>

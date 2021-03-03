@@ -1,27 +1,32 @@
 import React, {useEffect, useState} from 'react'
 import {database, FieldValue} from '../lib/firebase'
 
+
 const DatabaseContext = React.createContext(null)
 
 function DatabaseContextProvider({children}) {
 
     const [photos, setPhotos] = useState([])
     const [blogs, setBlogs] = useState([])
-    
+
 
     const getBlogs = async () => {
         const response = await database.users.get()
-        response.docs.forEach(doc=>setBlogs(prevBlogs=> [...prevBlogs,doc.data()]))
+        response.docs.forEach(doc=>setBlogs(prevBlogs=> [...prevBlogs,{...doc.data(), dataId: doc.id}]))
+        
     }
 
     const getPhotos = async () => {
         const response = await database.photos.get()
         response.docs.forEach(doc=>setPhotos(prevPhotos=> [...prevPhotos,{...doc.data(), postId: doc.id}]))
+        
     }
 
+
     useEffect(()=>{
-        getPhotos();
+        getPhotos()
         getBlogs()
+     
 
     },[])
 

@@ -18,7 +18,14 @@ const database = {
 };
 const auth = firebaseApp.auth()
 const {FieldValue} = firebase.firestore
+const storage = firebase.storage
 
 
 
-export { firebaseApp, database , auth, FieldValue};
+export { 
+  firebaseApp, 
+  database, 
+  auth, 
+  FieldValue,
+  storage
+};
