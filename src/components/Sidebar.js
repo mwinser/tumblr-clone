@@ -16,7 +16,7 @@ function Sidebar() {
                     Check out these blogs
                 </div>
                 <ul className="py-2.5">
-                    {blogs.slice(0,4).map((blog, index)=>(
+                    {blogs.sort((a,b)=>b.followers.length-a.followers.length).slice(0,4).map((blog, index)=>(
                         <li key={index} className="flex justify-between py-2 px-2.5">
                             <div className="flex items-center justify-center">
                                 <div className="AVATAR mr-3 w-10 h-10">

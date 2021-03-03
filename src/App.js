@@ -29,7 +29,7 @@ function App() {
           <PrivateRoute path={ROUTES.PROFILE} component={Profile}/>
           <PrivateRoute path={ROUTES.SEARCH} component={Search}/>
           <PrivateRoute path={ROUTES.INBOX} component={Inbox}/>
-          <PrivateRoute path={ROUTES.BLOG} component={Blog}/>
+          <PrivateRoute path={ROUTES.BLOG + "/:blogName"} component={Blog}/>
           <PrivateRoute path={ROUTES.RECOMMENDED} component={Recommended}/>
           <PrivateRoute path={ROUTES.CREATE_POST} component={CreatePost}/>
           <PrivateRoute component={NotFound}/>
