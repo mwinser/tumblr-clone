@@ -21,11 +21,23 @@ function CreatePost() {
         e.preventDefault()
 
         try {
+            let url
+            let type = "text"
+            const file = document.getElementById('image').files[0]
+            if (file) {
+                const imageRef = storage.child(file.name)
+                await imageRef.put(file)
+                url = await imageRef.getDownloadURL()
+                type = "image"
+            } else {
+                url = null
+            }
+
             const response = await database.photos.add({
                 photoId: null,
                 username: blogs.find(blog=>blog.userId===currentUser.uid).username,
-                type: 'text',
-                imageSrc: null,
+                type: type,
+                imageSrc: url,
                 caption: caption,
                 likes: [],
                 comments: [],
@@ -35,7 +47,7 @@ function CreatePost() {
             console.log("Post added with ID: " + response.id)
             
         } catch (error) {
-            console.log(error.message)
+            console.log(error)
         }
     }
         return (
@@ -66,7 +78,7 @@ function CreatePost() {
                     />
                 </form>
                 <div onClick={updatePreview}>Click to Preview</div>
-                <img className="w-48"id="imgPreview"/>
+                <img className="w-48" id="imgPreview"/>
                 </div>
 
 
