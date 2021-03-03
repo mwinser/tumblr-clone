@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 import Header from '../components/Header'
-import {database} from '../lib/firebase'
+import {database, storage} from '../lib/firebase'
 import {Context} from '../context/Context'
 import {DatabaseContext} from '../context/databaseContext'
 
@@ -8,8 +8,15 @@ function CreatePost() {
     const {currentUser} = useContext(Context)
     const {blogs} = useContext(DatabaseContext)
     const [caption, setCaption] = useState('')
-    
+    let uploadedImage
 
+    const updatePreview = () => {
+        console.log('updateRan')
+        const preview = document.getElementById('imgPreview')
+        uploadedImage = document.getElementById('image').files[0]
+        preview.src = URL.createObjectURL(uploadedImage)
+
+    }
     async function handleSubmit (e) {
         e.preventDefault()
 
@@ -39,7 +46,7 @@ function CreatePost() {
 
             <div className="h-72 flex flex-col justify-between">
                 
-                <form className="h-72 flex flex-col justify-between" onSubmit={(e)=>handleSubmit(e)}>
+                <form className="flex flex-col justify-between" onSubmit={(e)=>handleSubmit(e)}>
                     <label>Text-only Post</label>
                     <textarea 
                         className="resize-none w-96 h-96 text-black p-4" 
@@ -49,8 +56,17 @@ function CreatePost() {
                         name="caption" 
                         maxLength='150' 
                         autoFocus/>
-                    <input className="bg-gray-500 rounded p-4" type="submit" value="submit"/>
+                    <input className="m-4" type="file" id="image" name="image" ></input>
+                    <input 
+                        className="bg-gray-500 rounded m-4 p-4" 
+                        type="submit" 
+                        value="submit" 
+                        accept="image/*"
+                        
+                    />
                 </form>
+                <div onClick={updatePreview}>Click to Preview</div>
+                <img className="w-48"id="imgPreview"/>
                 </div>
 
 
