@@ -2,16 +2,12 @@ import React, {useContext, useState} from 'react'
 import {Link} from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import {DatabaseContext} from '../context/databaseContext'
-import {Context} from '../context/Context'
+
 
 function Post(props){
-    const {addFavorite, removeFavorite, blogs} = useContext(DatabaseContext)
+    const {addFavorite, removeFavorite} = useContext(DatabaseContext)
 
-    // const {currentUser} = useContext(Context)
-    // const currentUserData = blogs.find(blog=>blog.userId===currentUser.uid)
-    // props.item.likes.some(user=>user===currentUserData.username)
-    // const currentUserName = currentUserData.username 
-    // console.log(currentUserName)
+
 
     const [isUserFavorite, setIsUserFavorite] = useState(props.item.likes.some(user=>user==="keanuforever")) 
 
