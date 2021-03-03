@@ -49,7 +49,7 @@ function Feed() {
                     <div>Video</div>
                 </div>
             </div>
-            {photos.map((item, index)=>(
+            {photos.sort((a,b)=>b.dateCreated-a.dateCreated).map((item, index)=>(
                 <Post key={index} item={item}/>
             ))}
 
