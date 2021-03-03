@@ -17,7 +17,8 @@ const database = {
   photos: firestore.collection('photos')
 };
 const auth = firebaseApp.auth()
+const {FieldValue} = firebase.firestore
 
 
 
-export { firebaseApp, database , auth};
+export { firebaseApp, database , auth, FieldValue};

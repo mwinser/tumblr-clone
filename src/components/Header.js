@@ -1,18 +1,42 @@
-import React, {useContext} from 'react'
-import {Link} from 'react-router-dom'
+import React, {useContext, useState} from 'react'
+import {Link, useHistory} from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import {Context} from '../context/Context'
 
 function Header(){
     const {currentUser} = useContext(Context)
+    const [search, setSearch] = useState('')
+    const history = useHistory()
+
+    function handleSubmitSearch (e) {
+        e.preventDefault()
+        history.push(`${ROUTES.SEARCH}/${search}`)
+    }
+
     return (
         <header className="sticky top-0 left-0 z-50 bg-navy border-b-2 border-white border-opacity-10">
             <div className="flex items-center justify-between h-14 max-w-screen-2xl text-white  mx-auto, pl-6 pr-5">
                 <div className="flex flex-start">
+                    
                     <p className="text-5xl font-bold pr-4">
-                    t
+                    <Link to={ROUTES.DASHBOARD}>
+                        t
+                    </Link>
                     </p>
-                    <input type="text" placeholder="Search" className="w-full bg-transparent bg-white bg-opacity-25 rounded placeholder-gray-100 p-1 m-2"/>
+                    <form onSubmit={e=>handleSubmitSearch(e)}>
+                        <input 
+                            value={search}
+                            onChange={(e)=>setSearch(e.target.value)}
+                            type="text" 
+                            placeholder="Search" 
+                            className="w-full bg-transparent bg-white bg-opacity-25 rounded placeholder-gray-100 p-1 m-2"
+                        />
+                        <input 
+                            type="submit" 
+                            style={{display:"none"}} 
+                        />
+                    </form>
+                    
                 </div>
                 <div className="flex justify-end items-center fill-current opacity-70">
                     <div className="mx-4">
@@ -24,10 +48,14 @@ function Header(){
                         </Link>
                     </div>
                     <div className="mx-4">
-                    <svg viewBox="0 0 21.8 21.8" width="22" height="22" fill="#ffffff"><path d="M10.9 21.8C4.9 21.8 0 16.9 0 10.9S4.9 0 10.9 0s10.9 4.9 10.9 10.9-4.9 10.9-10.9 10.9zM12 2.1c-.5-.1-1.8-.1-2 0-4.1.4-7.5 3.7-8 7.8-.1.5-.1 1.8 0 2 .4 4.2 3.8 7.6 8 8h2c4.1-.5 7.4-3.8 7.8-8v-2C19.2 5.8 16 2.6 12 2.1zm1.7 11.3c-.1.2-.2.3-.4.4l-6.7 2.5c-.5.2-1.1-.3-.9-.9l2.5-6.7c.1-.2.2-.3.4-.4l6.7-2.5c.5-.2 1.1.3.9.9l-2.5 6.7zm-1.9-3.3c-.5-.5-1.3-.5-1.7 0-.5.5-.5 1.3 0 1.7.5.5 1.3.5 1.7 0 .4-.4.4-1.2 0-1.7z"></path></svg>
+                        <Link to={ROUTES.RECOMMENDED}>
+                            <svg viewBox="0 0 21.8 21.8" width="22" height="22" fill="#ffffff"><path d="M10.9 21.8C4.9 21.8 0 16.9 0 10.9S4.9 0 10.9 0s10.9 4.9 10.9 10.9-4.9 10.9-10.9 10.9zM12 2.1c-.5-.1-1.8-.1-2 0-4.1.4-7.5 3.7-8 7.8-.1.5-.1 1.8 0 2 .4 4.2 3.8 7.6 8 8h2c4.1-.5 7.4-3.8 7.8-8v-2C19.2 5.8 16 2.6 12 2.1zm1.7 11.3c-.1.2-.2.3-.4.4l-6.7 2.5c-.5.2-1.1-.3-.9-.9l2.5-6.7c.1-.2.2-.3.4-.4l6.7-2.5c.5-.2 1.1.3.9.9l-2.5 6.7zm-1.9-3.3c-.5-.5-1.3-.5-1.7 0-.5.5-.5 1.3 0 1.7.5.5 1.3.5 1.7 0 .4-.4.4-1.2 0-1.7z"></path></svg>
+                        </Link>
                     </div>
                     <div className="mx-4">
-                    <svg viewBox="0 0 23 16.9" width="23" height="21"><path d="M20.9 0H2.1C.6 0 0 .7 0 2.2v12.5c0 1.6.6 2.2 2.1 2.2h18.8c1.5 0 2.1-.7 2.1-2.2V2.2C23 .7 22.4 0 20.9 0zm.4 13.6c.3.3-.2.8-.5 1.1-.1.2-.3.5-.5.5s-.2.1-.3-.1l-5.5-5-.6.5c-.7.6-1.6 1.1-2.4 1.1-.9 0-1.7-.4-2.4-1.1l-.6-.6-5.2 4.8c-.1.1-.3.2-.5.2s-.4-.1-.5-.2c-.3-.3-.8-1-.5-1.3l5.1-4.9-5-5c-.3-.3.1-.8.3-1.1.3-.3.8-.4 1.1-.2L10 8.9c.4.4.9.8 1.4.9.6 0 1.1-.4 1.6-.9l6.6-6.7c.3-.3.9 0 1.2.3.3.3.4 1 .2 1.2l-4.9 4.8 5.2 5.1z"></path></svg>
+                        <Link to={ROUTES.INBOX}>
+                            <svg viewBox="0 0 23 16.9" width="23" height="21"><path d="M20.9 0H2.1C.6 0 0 .7 0 2.2v12.5c0 1.6.6 2.2 2.1 2.2h18.8c1.5 0 2.1-.7 2.1-2.2V2.2C23 .7 22.4 0 20.9 0zm.4 13.6c.3.3-.2.8-.5 1.1-.1.2-.3.5-.5.5s-.2.1-.3-.1l-5.5-5-.6.5c-.7.6-1.6 1.1-2.4 1.1-.9 0-1.7-.4-2.4-1.1l-.6-.6-5.2 4.8c-.1.1-.3.2-.5.2s-.4-.1-.5-.2c-.3-.3-.8-1-.5-1.3l5.1-4.9-5-5c-.3-.3.1-.8.3-1.1.3-.3.8-.4 1.1-.2L10 8.9c.4.4.9.8 1.4.9.6 0 1.1-.4 1.6-.9l6.6-6.7c.3-.3.9 0 1.2.3.3.3.4 1 .2 1.2l-4.9 4.8 5.2 5.1z"></path></svg>
+                        </Link>
                     </div>
                     <div className="mx-4">
                     <svg viewBox="0 0 21 21" width="22" height="22" fill="#ffffff"><path d="M10.5 0C4.7 0 0 4.722 0 10.55c0 2.21.7 4.22 1.8 5.828l-.7 4.12 4.5-.704C7.1 20.598 8.8 21 10.5 21 16.3 21 21 16.278 21 10.45S16.3 0 10.5 0zM5.9 7.636c0-.904.8-1.708 1.7-1.708.9 0 1.7.804 1.7 1.708 0 .905-.8 1.708-1.7 1.708-.9 0-1.7-.803-1.7-1.708zm4.6 8.44c-2.1 0-3.9-1.105-4.6-2.712-.3-.603.3-1.307 1.1-1.307h6.8c.8 0 1.4.704 1.1 1.307-.5 1.607-2.3 2.713-4.4 2.713zm2.9-6.832c-.9 0-1.7-.804-1.7-1.708 0-.904.8-1.708 1.7-1.708.9 0 1.7.804 1.7 1.708 0 .904-.7 1.708-1.7 1.708z"></path></svg>

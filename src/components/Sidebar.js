@@ -1,4 +1,6 @@
 import React, {useContext} from 'react'
+import {Link} from 'react-router-dom'
+import * as ROUTES from '../constants/routes'
 import {DatabaseContext} from '../context/databaseContext'
 
 
@@ -14,13 +16,23 @@ function Sidebar() {
                     Check out these blogs
                 </div>
                 <ul className="py-2.5">
-                    {blogs.slice(0,4).map(blog=>(
-                        <li className="flex justify-between py-2 px-2.5">
+                    {blogs.slice(0,4).map((blog, index)=>(
+                        <li key={index} className="flex justify-between py-2 px-2.5">
                             <div className="flex items-center justify-center">
-                                <div className="AVATAR mr-3 w-10 h-10 bg-white rounded"></div>
+                                <div className="AVATAR mr-3 w-10 h-10">
+                                    <Link to={`${ROUTES.BLOG}/${blog.username}`}>
+                                        <img 
+                                            className="rounded"
+                                            alt="avatar" 
+                                            src="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
+                                        />
+                                    </Link>
+                                </div>
                                 <div className="flex-1 flex flex-col justify-center items-start">
                                     <div className="font-bold">
-                                    {blog.username}
+                                        <Link to={`${ROUTES.BLOG}/${blog.username}`}>
+                                            {blog.username}
+                                        </Link>
                                     </div>
                                     <div>Description</div>
                                 </div>
@@ -34,7 +46,9 @@ function Sidebar() {
                     ))}
                 </ul>
                 <div className="mt-3 pl-2.5">
-                    Explore all of Tumblr
+                    <Link to={ROUTES.RECOMMENDED}>
+                        Explore all of Tumblr
+                    </Link>
                 </div>
             </div>
             <div className="RADARCARD mb-9">
