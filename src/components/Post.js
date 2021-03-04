@@ -8,10 +8,10 @@ function Post(props){
     const {addFavorite, removeFavorite, follow, unfollow} = useContext(DatabaseContext)
 
     const item = props.item
-    const currentUsername = props.currentUsername
+    const currentUsername = props.currentUserData.username
 
-    const [isUserFavorite, setIsUserFavorite] = useState(props.item.likes.some(user=>user===currentUsername)) 
-
+    const [isUserFavorite, setIsUserFavorite] = useState(item.likes.some(user=>user===currentUsername)) 
+    const [isFollowed, setIsFollowed] = useState(props.currentUserData.following.some(user=>user===item.username)) 
 
 
     function handleToggleFavorite() {
@@ -36,8 +36,28 @@ function Post(props){
                     {item.username}
                 </Link>
             </div>
-            <div className="FOLLOW cursor-pointer ml-2" onClick={()=>follow(item.username)}>Follow</div>
-            <div className="UNFOLLOW cursor-pointer ml-2" onClick={()=>unfollow(item.username)}>Unfollow</div>
+            {isFollowed ? (
+                <div 
+                    className="UNFOLLOW cursor-pointer ml-2" 
+                    onClick={()=>{
+                        unfollow(item.username)
+                        setIsFollowed(false)
+                    }}
+                >
+                    Unfollow
+                </div>
+                ) : (
+                <div 
+                    className="FOLLOW cursor-pointer ml-2" 
+                    onClick={()=>{
+                        follow(item.username)
+                        setIsFollowed(true)
+                    }}
+                >
+                    Follow
+                </div>
+                )
+            }
             <span className="flex-grow"></span>
             <div className="MENU">...</div>
         </div>
