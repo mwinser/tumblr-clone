@@ -77,7 +77,7 @@ function Post(props){
         </div>
         <div className="FOOTER flex justify-between mt-3 px-5 pb-3">
             <div className="NOTES">
-                3 Notes
+                {item.comments.length} Notes
             </div>
             <div className="ICONS flex justify-between text-gray-500">
                 <div className="ml-5 fill-current">
