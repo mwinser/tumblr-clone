@@ -7,14 +7,15 @@ import {DatabaseContext} from '../context/databaseContext'
 function Post(props){
     const {addFavorite, removeFavorite} = useContext(DatabaseContext)
 
-
-
-    const [isUserFavorite, setIsUserFavorite] = useState(props.item.likes.some(user=>user==="keanuforever")) 
-
     const item = props.item
+    const currentUsername = props.currentUsername
+
+    const [isUserFavorite, setIsUserFavorite] = useState(props.item.likes.some(user=>user===currentUsername)) 
+
+
 
     function handleToggleFavorite() {
-        isUserFavorite? removeFavorite(item.postId, "keanuforever") : addFavorite(item.postId, "keanuforever")
+        isUserFavorite? removeFavorite(item.postId, currentUsername) : addFavorite(item.postId, currentUsername)
         
         setIsUserFavorite(prevState=>!prevState)
     }

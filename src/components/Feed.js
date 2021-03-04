@@ -4,11 +4,14 @@ import {DatabaseContext} from '../context/databaseContext'
 import Post from '../components/Post'
 import * as ROUTES from '../constants/routes'
 
+
 function Feed() {
-    const {photos} = useContext(DatabaseContext)
-    
+    const {photos, currentUserData} = useContext(DatabaseContext)
 
     return(
+        currentUserData ? (
+
+        
         <div className="FEED flex items-end flex-col w-full max-w-625px">
             <div className="POSTINGMENU relative flex justify-between text-black bg-white w-10/12 rounded mb-5 py-4 px-1">
                 <div className="absolute top-0 -left-20 w-16 h-16">
@@ -49,12 +52,21 @@ function Feed() {
                     <div>Video</div>
                 </div>
             </div>
-            {photos.sort((a,b)=>b.dateCreated-a.dateCreated).map((item, index)=>(
-                <Post key={index} item={item}/>
-            ))}
+            {photos
+                .filter((photo)=>photo.username!==currentUserData.username)
+                .sort((a,b)=>b.dateCreated-a.dateCreated)
+                .map((item, index)=>(
+                    <Post key={index} item={item} 
+                    currentUsername={currentUserData.username}
+                    />
+                ))
+            }
 
 
         </div>
+        ) : (
+            <div>Loading...</div>
+        )
     )
 }
 

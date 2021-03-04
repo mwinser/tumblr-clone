@@ -21,6 +21,8 @@ const auth = firebaseApp.auth()
 const {FieldValue} = firebase.firestore
 const storage = firebase.storage().ref()
 
+auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+
 
 
 export { 

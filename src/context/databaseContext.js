@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {database, FieldValue} from '../lib/firebase'
+import {Context} from './Context'
 
 
 const DatabaseContext = React.createContext(null)
 
 function DatabaseContextProvider({children}) {
-
+    const {currentUser} = useContext(Context)
+    const [currentUserData, setCurrentUserData] = useState()
     const [photos, setPhotos] = useState([])
     const [blogs, setBlogs] = useState([])
 
@@ -13,6 +15,8 @@ function DatabaseContextProvider({children}) {
     const getBlogs = async () => {
         const response = await database.users.get()
         response.docs.forEach(doc=>setBlogs(prevBlogs=> [...prevBlogs,{...doc.data(), dataId: doc.id}]))
+        setCurrentUserData(response.docs.find(doc=>doc.data().userId===currentUser.uid).data())
+
         
     }
 
@@ -46,6 +50,7 @@ function DatabaseContextProvider({children}) {
         <DatabaseContext.Provider value={{
             photos,
             blogs,
+            currentUserData,
             addFavorite,
             removeFavorite
 
