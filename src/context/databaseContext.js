@@ -15,7 +15,9 @@ function DatabaseContextProvider({children}) {
     const getBlogs = async () => {
         const response = await database.users.get()
         response.docs.forEach(doc=>setBlogs(prevBlogs=> [...prevBlogs,{...doc.data(), dataId: doc.id}]))
-        setCurrentUserData(response.docs.find(doc=>doc.data().userId===currentUser.uid).data())
+        const dataId = response.docs.find(doc=>doc.data().userId===currentUser.uid).id
+            
+        setCurrentUserData({...response.docs.find(doc=>doc.data().userId===currentUser.uid).data(), dataId: dataId})
 
         
     }
@@ -45,6 +47,26 @@ function DatabaseContextProvider({children}) {
         })
     }
 
+    function follow (usernameToFollow) {
+        const followed = blogs.find(blog=>blog.username===usernameToFollow)
+        
+        database.users.doc(followed.dataId).update({
+            followers: FieldValue.arrayUnion(currentUserData.username)
+        })
+        database.users.doc(currentUserData.dataId).update({
+            following: FieldValue.arrayUnion(usernameToFollow)
+        })
+    }
+    function unfollow (usernameToUnfollow) {
+        const unfollowed = blogs.find(blog=>blog.username===usernameToUnfollow)
+        
+        database.users.doc(unfollowed.dataId).update({
+            followers: FieldValue.arrayRemove(currentUserData.username)
+        })
+        database.users.doc(currentUserData.dataId).update({
+            following: FieldValue.arrayRemove(usernameToUnfollow)
+        })
+    }
 
     return (
         <DatabaseContext.Provider value={{
@@ -52,7 +74,9 @@ function DatabaseContextProvider({children}) {
             blogs,
             currentUserData,
             addFavorite,
-            removeFavorite
+            removeFavorite,
+            follow,
+            unfollow
 
         }}>
             {children}

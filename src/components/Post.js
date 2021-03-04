@@ -5,7 +5,7 @@ import {DatabaseContext} from '../context/databaseContext'
 
 
 function Post(props){
-    const {addFavorite, removeFavorite} = useContext(DatabaseContext)
+    const {addFavorite, removeFavorite, follow, unfollow} = useContext(DatabaseContext)
 
     const item = props.item
     const currentUsername = props.currentUsername
@@ -36,7 +36,8 @@ function Post(props){
                     {item.username}
                 </Link>
             </div>
-            <div className="FOLLOW ml-2">Follow</div>
+            <div className="FOLLOW cursor-pointer ml-2" onClick={()=>follow(item.username)}>Follow</div>
+            <div className="UNFOLLOW cursor-pointer ml-2" onClick={()=>unfollow(item.username)}>Unfollow</div>
             <span className="flex-grow"></span>
             <div className="MENU">...</div>
         </div>
