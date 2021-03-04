@@ -18,7 +18,7 @@ const CreatePost = lazy(()=> import('./pages/CreatePost'))
 
 function App() {
   return (
-    <div className="relative w-full h-full bg-navy">
+    <div className="relative w-full h-full min-h-screen bg-navy">
       <Suspense fallback={<p>Loading...</p>}>
         <Switch>
           <PrivateRoute exact path="/" component={Dashboard}/>
@@ -27,7 +27,7 @@ function App() {
           <Route path={ROUTES.FORGOT_PASSWORD} component={ForgotPassword}/>
           <PrivateRoute path={ROUTES.DASHBOARD} component={Dashboard}/>
           <PrivateRoute path={ROUTES.PROFILE} component={Profile}/>
-          <PrivateRoute path={ROUTES.SEARCH} component={Search}/>
+          <PrivateRoute path={ROUTES.SEARCH + "/:query"} component={Search}/>
           <PrivateRoute path={ROUTES.INBOX} component={Inbox}/>
           <PrivateRoute path={ROUTES.BLOG + "/:blogName"} component={Blog}/>
           <PrivateRoute path={ROUTES.RECOMMENDED} component={Recommended}/>
