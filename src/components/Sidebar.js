@@ -53,6 +53,7 @@ function Sidebar() {
                     </Link>
                 </div>
             </div>
+            {currentUserData &&
             <div className="RADARCARD mb-9">
                 <div className="text-xl font-bold px-2.5 pb-2.5 border-b-2">
                     Radar
@@ -68,6 +69,7 @@ function Sidebar() {
                 </div>
                 
             </div>
+            }           
             <div className="SPONSOREDCARD sticku top-16">
                 <div className="text-xl font-bold px-2.5 pb-2.5 border-b-2">
                     Sponsored
