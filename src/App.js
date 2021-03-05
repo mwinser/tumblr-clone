@@ -12,6 +12,7 @@ const ForgotPassword = lazy(()=> import('./pages/ForgotPassword'))
 const Search = lazy(()=> import('./pages/Search'))
 const Inbox = lazy(()=> import('./pages/Inbox'))
 const Blog = lazy(()=> import('./pages/Blog'))
+const Likes = lazy(()=> import('./pages/Likes'))
 const Recommended = lazy(()=> import('./pages/Recommended'))
 const CreatePost = lazy(()=> import('./pages/CreatePost'))
 
@@ -32,6 +33,7 @@ function App() {
           <PrivateRoute path={ROUTES.BLOG + "/:blogName"} component={Blog}/>
           <PrivateRoute path={ROUTES.RECOMMENDED} component={Recommended}/>
           <PrivateRoute path={ROUTES.CREATE_POST} component={CreatePost}/>
+          <PrivateRoute path={ROUTES.LIKES} component={Likes}/>
           <PrivateRoute component={NotFound}/>
         </Switch>
       </Suspense>
