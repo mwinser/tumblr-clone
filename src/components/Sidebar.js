@@ -2,10 +2,11 @@ import React, {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import {DatabaseContext} from '../context/databaseContext'
+import Post from './Post'
 
 
 function Sidebar() {
-    const {blogs} = useContext(DatabaseContext)
+    const {blogs, photos, currentUserData} = useContext(DatabaseContext)
     
 
 
@@ -56,7 +57,16 @@ function Sidebar() {
                 <div className="text-xl font-bold px-2.5 pb-2.5 border-b-2">
                     Radar
                 </div>
-                INSERT POST HERE
+                <div className="p-2">
+                    {photos
+                        .sort((a,b)=>b.likes.length-a.likes.length)
+                        .slice(0,1)
+                        .map((item, index)=>(
+                            <Post key={index} item={item} currentUserData={currentUserData} small={true}/>
+                        ))
+                    }
+                </div>
+                
             </div>
             <div className="SPONSOREDCARD sticku top-16">
                 <div className="text-xl font-bold px-2.5 pb-2.5 border-b-2">

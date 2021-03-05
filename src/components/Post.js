@@ -9,6 +9,11 @@ function Post(props){
 
     const item = props.item
     const currentUsername = props.currentUserData.username
+    var isSmall
+    if (props.small) {
+        isSmall = true
+    }
+    
 
     const [isUserFavorite, setIsUserFavorite] = useState(item.likes.some(user=>user===currentUsername)) 
     const [isFollowed, setIsFollowed] = useState(props.currentUserData.following.some(user=>user===item.username)) 
@@ -21,15 +26,18 @@ function Post(props){
     }
 
     return (
-    <div className="POSTS relative text-black bg-white w-10/12 rounded mb-5">
-        <Link to={`${ROUTES.BLOG}/${item.username}`}>
-            <div className="AVATAR absolute top-0 -left-20 w-16 h-full">
-                <img 
-                    className="sticky top-16 rounded"
-                    alt="avatar" 
-                    src="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"/>
-            </div>
-        </Link>
+    <div className={`POSTS relative text-black bg-white ${isSmall ? "w-full" : "w-10/12"} rounded mb-5`}>
+        {!isSmall && (
+            <Link to={`${ROUTES.BLOG}/${item.username}`}>
+                <div className="AVATAR absolute top-0 -left-20 w-16 h-full">
+                    <img 
+                        className="sticky top-16 rounded"
+                        alt="avatar" 
+                        src="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"/>
+                </div>
+            </Link>
+        ) }
+        
         <div className="HEADER flex justify-between px-5 pt-4 mb-4">
             <div className="USERNAME font-bold">
                 <Link to={`${ROUTES.BLOG}/${item.username}`}>
@@ -69,25 +77,35 @@ function Post(props){
                     alt="user content"/>
             </div>
         )}
-        <div className="CAPTION my-4 px-5">
-            {item.caption}
-        </div>
-        <div className="HASHTAGS my-2.5 px-5 text-gray-500">
-            #hashtag #post #trending #octothorpe #pound
-        </div>
+        {!isSmall && (
+            <>
+            <div className="CAPTION my-4 px-5">
+                {item.caption}
+            </div>
+            <div className="HASHTAGS my-2.5 px-5 text-gray-500">
+                #hashtag #post #trending #octothorpe #pound
+            </div>
+            </>
+        )}
+        
         <div className="FOOTER flex justify-between mt-3 px-5 pb-3">
             <div className="NOTES">
                 {item.comments.length} Notes
             </div>
             <div className="ICONS flex justify-between text-gray-500">
+                {!isSmall && (
+                    <>
+                    <div className="ml-5 fill-current">
+                        <svg viewBox="0 0 17 17" width="21" height="21" fill="rgba(var(--black), 0.65)"><path d="M2 15l3.17-5.065 4.124-.956c.475-.143.475-.816 0-.96L5.17 7.066 2 2l13 6.5L2 15zm13.894-8.29l-13-6.5A1.996 1.996 0 0 0 .52.655 2 2 0 0 0 .304 3.06L3.71 8.5.303 13.94a2 2 0 0 0 2.59 2.85l13-6.5a2.002 2.002 0 0 0 .001-3.58z"></path></svg>
+                    </div>
+                    <div className="ml-5 fill-current">
+                        <svg viewBox="0 0 17 17" width="21" height="21" fill="rgba(var(--black), 0.65)"><path d="M8.7 0C4.1 0 .4 3.7.4 8.3c0 1.2.2 2.3.7 3.4-.2.6-.4 1.5-.7 2.5L0 15.8c-.2.7.5 1.4 1.2 1.2l1.6-.4 2.4-.7c1.1.5 2.2.7 3.4.7 4.6 0 8.3-3.7 8.3-8.3C17 3.7 13.3 0 8.7 0zM15 8.3c0 3.5-2.8 6.3-6.4 6.3-1.2 0-2.3-.3-3.2-.9l-3.2.9.9-3.2c-.5-.9-.9-2-.9-3.2.1-3.4 3-6.2 6.5-6.2S15 4.8 15 8.3z"></path></svg>
+                    </div>
+                    </>
+                )}
+
                 <div className="ml-5 fill-current">
-                <svg viewBox="0 0 17 17" width="21" height="21" fill="rgba(var(--black), 0.65)"><path d="M2 15l3.17-5.065 4.124-.956c.475-.143.475-.816 0-.96L5.17 7.066 2 2l13 6.5L2 15zm13.894-8.29l-13-6.5A1.996 1.996 0 0 0 .52.655 2 2 0 0 0 .304 3.06L3.71 8.5.303 13.94a2 2 0 0 0 2.59 2.85l13-6.5a2.002 2.002 0 0 0 .001-3.58z"></path></svg>
-                </div>
-                <div className="ml-5 fill-current">
-                <svg viewBox="0 0 17 17" width="21" height="21" fill="rgba(var(--black), 0.65)"><path d="M8.7 0C4.1 0 .4 3.7.4 8.3c0 1.2.2 2.3.7 3.4-.2.6-.4 1.5-.7 2.5L0 15.8c-.2.7.5 1.4 1.2 1.2l1.6-.4 2.4-.7c1.1.5 2.2.7 3.4.7 4.6 0 8.3-3.7 8.3-8.3C17 3.7 13.3 0 8.7 0zM15 8.3c0 3.5-2.8 6.3-6.4 6.3-1.2 0-2.3-.3-3.2-.9l-3.2.9.9-3.2c-.5-.9-.9-2-.9-3.2.1-3.4 3-6.2 6.5-6.2S15 4.8 15 8.3z"></path></svg>
-                </div>
-                <div className="ml-5 fill-current">
-                <svg viewBox="0 0 17 18.1" width="21" height="21" fill="rgba(var(--black), 0.65)"><path d="M12.8.2c-.4-.4-.8-.2-.8.4v2H2c-2 0-2 2-2 2v5s0 1 1 1 1-1 1-1v-4c0-1 .5-1 1-1h9v2c0 .6.3.7.8.4L17 3.6 12.8.2zM4.2 17.9c.5.4.8.2.8-.3v-2h10c2 0 2-2 2-2v-5s0-1-1-1-1 1-1 1v4c0 1-.5 1-1 1H5v-2c0-.6-.3-.7-.8-.4L0 14.6l4.2 3.3z"></path></svg>
+                    <svg viewBox="0 0 17 18.1" width="21" height="21" fill="rgba(var(--black), 0.65)"><path d="M12.8.2c-.4-.4-.8-.2-.8.4v2H2c-2 0-2 2-2 2v5s0 1 1 1 1-1 1-1v-4c0-1 .5-1 1-1h9v2c0 .6.3.7.8.4L17 3.6 12.8.2zM4.2 17.9c.5.4.8.2.8-.3v-2h10c2 0 2-2 2-2v-5s0-1-1-1-1 1-1 1v4c0 1-.5 1-1 1H5v-2c0-.6-.3-.7-.8-.4L0 14.6l4.2 3.3z"></path></svg>
                 </div>
                 <div 
                     className="FAVORITE ml-5 fill-current" 
