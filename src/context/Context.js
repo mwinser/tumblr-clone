@@ -6,7 +6,7 @@ const Context = React.createContext(null)
 function ContextProvider({children}) {
     const [emailAddress, setEmailAddress] = useState('')
     const [blogName, setBlogName] = useState('')
-    const [currentUser, setCurrentUser] = useState({uid: '0'})
+    const [currentUser, setCurrentUser] = useState({uid: '0', email: 'guest'})
     const [isLoading, setIsLoading] = useState(true)
 
 
