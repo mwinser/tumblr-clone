@@ -14,7 +14,9 @@ module.exports = {
         '990px': '990px',
         '625px': '625px',
         '320px': '320px'
-
+      },
+      colors: {
+        'navy': '#001935'
       }
     },
   },
