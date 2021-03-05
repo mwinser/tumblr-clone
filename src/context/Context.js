@@ -6,7 +6,7 @@ const Context = React.createContext(null)
 function ContextProvider({children}) {
     const [emailAddress, setEmailAddress] = useState('')
     const [blogName, setBlogName] = useState('')
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useState({uid: '0'})
     const [isLoading, setIsLoading] = useState(true)
 
 
@@ -28,8 +28,9 @@ function ContextProvider({children}) {
 
     useEffect(()=>{
         const unsubscribe = auth.onAuthStateChanged(user=> {
-            setCurrentUser(user)
+            user && setCurrentUser(user)
             setIsLoading(false)
+            
             
         })
         return unsubscribe

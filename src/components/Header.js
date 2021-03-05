@@ -8,9 +8,21 @@ import {Context} from '../context/Context'
 function Header(){
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [search, setSearch] = useState('')
+    const [error, setError] = useState('')
     const history = useHistory()
     const {photos, currentUserData} = useContext(DatabaseContext)
     const {logout} = useContext(Context)
+
+    async function handleLogout() {
+        setError('')
+
+        try {
+            await logout()
+            history.push(ROUTES.LOGIN)
+        } catch (error) {
+            setError(error.message)
+        }
+    }
 
     function handleSubmitSearch (e) {
         e.preventDefault()
@@ -89,9 +101,16 @@ function Header(){
                         <div>
                             Account
                         </div>
-                        <div className="cursor-pointer" onClick={()=>logout()}>
-                            Log out
-                        </div>
+                        {currentUserData.username!=='guest' ? (
+                            <div className="cursor-pointer" onClick={()=>handleLogout()}>
+                                Log out
+                            </div>
+                        ) : (
+                            <div className="cursor-pointer" onClick={()=>history.push(ROUTES.LOGIN)}>
+                                Log in
+                            </div>
+                        )}
+                        
                     </div>
                     <div className="bg-white text-black py-1 pr-5 pl-2.5">
                         <ul className="flex flex-col">
@@ -111,7 +130,7 @@ function Header(){
                                 
                             </li>
                             <li className="flex items-center justify-center">
-                                <svg className="mr-2.5" width="20" height="21" viewBox="0 0 20 21" fill="gray" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 2C5.10218 2 4.72064 2.15804 4.43934 2.43934C4.15804 2.72064 4 3.10218 4 3.5C4 3.89782 4.15804 4.27936 4.43934 4.56066C4.72064 4.84196 5.10218 5 5.5 5H8.65402C8.53195 4.68061 8.37741 4.32942 8.18628 3.98192C7.55732 2.83834 6.6939 2 5.5 2ZM11.346 5H14.5C14.8978 5 15.2794 4.84196 15.5607 4.56066C15.842 4.27936 16 3.89782 16 3.5C16 3.10218 15.842 2.72064 15.5607 2.43934C15.2794 2.15804 14.8978 2 14.5 2C13.3061 2 12.4427 2.83834 11.8137 3.98192C11.6226 4.32942 11.4681 4.68061 11.346 5ZM17.6623 5C17.8826 4.53557 18 4.02384 18 3.5C18 2.57174 17.6313 1.6815 16.9749 1.02513C16.3185 0.368749 15.4283 0 14.5 0C12.1939 0 10.8073 1.66166 10.0613 3.01808C10.0405 3.0559 10.0201 3.09369 10 3.13142C9.97994 3.09369 9.95951 3.0559 9.93872 3.01808C9.19268 1.66166 7.8061 0 5.5 0C4.57174 0 3.6815 0.368749 3.02513 1.02513C2.36875 1.6815 2 2.57174 2 3.5C2 4.02384 2.11743 4.53557 2.33772 5H2C0.895431 5 0 5.89543 0 7V10C0 11.1046 0.895431 12 2 12V19C2 20.1046 2.89543 21 4 21H10H16C17.1046 21 18 20.1046 18 19V12C19.1046 12 20 11.1046 20 10V7C20 5.89543 19.1046 5 18 5H17.6623ZM14.5 7H11V10H17H18V7H14.5ZM9 7H5.5H2V10H3H9V7ZM16 19H11V12H16V19ZM9 19V12H4V19H9Z"></path></svg>
+                                <svg className="mr-2.5" width="20" height="21" viewBox="0 0 20 21" fill="gray" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M5.5 2C5.10218 2 4.72064 2.15804 4.43934 2.43934C4.15804 2.72064 4 3.10218 4 3.5C4 3.89782 4.15804 4.27936 4.43934 4.56066C4.72064 4.84196 5.10218 5 5.5 5H8.65402C8.53195 4.68061 8.37741 4.32942 8.18628 3.98192C7.55732 2.83834 6.6939 2 5.5 2ZM11.346 5H14.5C14.8978 5 15.2794 4.84196 15.5607 4.56066C15.842 4.27936 16 3.89782 16 3.5C16 3.10218 15.842 2.72064 15.5607 2.43934C15.2794 2.15804 14.8978 2 14.5 2C13.3061 2 12.4427 2.83834 11.8137 3.98192C11.6226 4.32942 11.4681 4.68061 11.346 5ZM17.6623 5C17.8826 4.53557 18 4.02384 18 3.5C18 2.57174 17.6313 1.6815 16.9749 1.02513C16.3185 0.368749 15.4283 0 14.5 0C12.1939 0 10.8073 1.66166 10.0613 3.01808C10.0405 3.0559 10.0201 3.09369 10 3.13142C9.97994 3.09369 9.95951 3.0559 9.93872 3.01808C9.19268 1.66166 7.8061 0 5.5 0C4.57174 0 3.6815 0.368749 3.02513 1.02513C2.36875 1.6815 2 2.57174 2 3.5C2 4.02384 2.11743 4.53557 2.33772 5H2C0.895431 5 0 5.89543 0 7V10C0 11.1046 0.895431 12 2 12V19C2 20.1046 2.89543 21 4 21H10H16C17.1046 21 18 20.1046 18 19V12C19.1046 12 20 11.1046 20 10V7C20 5.89543 19.1046 5 18 5H17.6623ZM14.5 7H11V10H17H18V7H14.5ZM9 7H5.5H2V10H3H9V7ZM16 19H11V12H16V19ZM9 19V12H4V19H9Z"></path></svg>
                                 <div className="flex-1 py-1">What's New</div>
                                 
                             </li>

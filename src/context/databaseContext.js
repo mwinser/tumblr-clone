@@ -16,7 +16,7 @@ function DatabaseContextProvider({children}) {
         const response = await database.users.get()
         response.docs.forEach(doc=>setBlogs(prevBlogs=> [...prevBlogs,{...doc.data(), dataId: doc.id}]))
         const dataId = response.docs.find(doc=>doc.data().userId===currentUser.uid).id
-            
+        console.log(currentUser.uid)
         setCurrentUserData({...response.docs.find(doc=>doc.data().userId===currentUser.uid).data(), dataId: dataId})
 
         
@@ -34,7 +34,7 @@ function DatabaseContextProvider({children}) {
         getBlogs()
      
 
-    },[])
+    },[currentUser])
 
     function addFavorite (postId, username) {
         database.photos.doc(postId).update({
