@@ -6,7 +6,8 @@ function Inbox() {
         return (
         <>
             <Header/>
-            <div className="bg-navy h-screen flex flex-col text-white">
+
+            <div className="bg-navy h-screen max-w-990px mx-auto px-2 flex flex-col text-white">
                 <div className="max-w-990px mx-12 pt-12 px-2 flex justify-center items-start">
                     <div className="max-w-625px w-3/5 mt-5 ml-20 mr-5 py-24 px-5 bg-gray-500 bg-opacity-20 text-gray-400 text-center font-bold text-xl rounded">
                         <svg className="w-32 mx-auto mb-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
