@@ -63,7 +63,7 @@ function Feed() {
 
         </div>
         ) : (
-            <div>Loading...</div>
+            <div className="text-5xl text-white">Loading...</div>
         )
     )
 }
