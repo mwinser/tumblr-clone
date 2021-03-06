@@ -19,7 +19,7 @@ function Sidebar() {
                 <ul className="py-2.5">
                     {blogs.sort((a,b)=>b.followers.length-a.followers.length).slice(0,4).map((blog, index)=>(
                         <Link to={`${ROUTES.BLOG}/${blog.username}`}>
-                            <li key={index} className="flex justify-between py-2 px-2.5">
+                            <li key={`blog${index}`} className="flex justify-between py-2 px-2.5">
                                 
                                 <div className="flex items-center justify-center">
                                     <div className="AVATAR mr-3 w-10 h-10">

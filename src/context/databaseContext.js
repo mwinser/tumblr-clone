@@ -16,8 +16,11 @@ function DatabaseContextProvider({children}) {
         const response = await database.users.get()
         const blogs = response.docs.map(doc=>{return {...doc.data(), dataId: doc.id}})
         setBlogs(blogs)
-        const user = response.docs.find(doc=>doc.data().userId===currentUser.uid)
-        setCurrentUserData({...user.data(), dataId: user.id})
+        setTimeout(()=>{
+            const user = response.docs.find(doc=>doc.data().userId===currentUser.uid)
+            setCurrentUserData({...user.data(), dataId: user.id})
+        },1000)
+        
 
         
     }
