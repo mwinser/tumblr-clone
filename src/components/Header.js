@@ -120,16 +120,20 @@ function Header(){
                     </div>
                     <div className="bg-white text-black py-1 pr-5 pl-2.5">
                         <ul className="flex flex-col">
+                            <Link to={ROUTES.LIKES}>
                             <li className="flex items-center justify-center">
                                 <svg className="mr-2.5" width="20" height="18" viewBox="0 0 20 18" fill="gray"><path d="M17.888 1.1C16.953.38 15.87 0 14.758 0c-1.6 0-3.162.76-4.402 2.139-.098.109-.217.249-.358.42a12.862 12.862 0 0 0-.36-.421C8.4.758 6.84 0 5.248 0 4.14 0 3.06.381 2.125 1.1-.608 3.201-.44 6.925 1.14 9.516c2.186 3.59 6.653 7.301 7.526 8.009.38.307.851.474 1.333.474a2.12 2.12 0 0 0 1.332-.473c.873-.71 5.34-4.42 7.526-8.01 1.581-2.597 1.755-6.321-.968-8.418"></path></svg>
                                 <div className="flex-1 py-1">Likes</div>
                                 <div>{photos.filter(photo=>photo.likes.some(like=>like===currentUserData.username)).length}</div>
                             </li>
+                            </Link>
+                            <Link to={ROUTES.FOLLOWING}>
                             <li className="flex items-center justify-center">
                                 <svg className="mr-2.5" viewBox="0 0 20 21" width="20" height="21" fill="gray"><path d="M11.5 8.8c0-1.5-1.2-2.8-2.6-2.8-1.4 0-2.6 1.3-2.6 2.8 0 1.5 1.2 2.2 2.6 2.2 1.5 0 2.6-.7 2.6-2.2zM5 16.2v.8h7.7v-.8c0-3-1.7-4.2-3.9-4.2C6.7 12 5 13.2 5 16.2zM16 19H2V4h10V2H2C.9 2 0 2.9 0 4v14.9C0 20.1.9 21 2 21h14.2c1.1 0 1.8-.9 1.8-2.1V8h-2v11zm2-17V0h-2v2h-2v2h2v2h2V4h2V2h-2z"></path></svg>
                                 <div className="flex-1 py-1">Following</div>
                                 <div>{currentUserData.following.length}</div>
                             </li>
+                            </Link>
                             <li className="flex items-center justify-center">
                                 <svg className="mr-2.5" width="20" height="20" viewBox="0 0 24 24" fill="gray"><path d="M24 10.526l-.36-.12-2.94-.962-.78-1.925 1.5-3.248-1.92-1.985-.36.18-2.76 1.444-1.86-.782L13.32 0h-2.58l-.12.421-1.08 2.707-1.86.782L4.5 2.346 2.58 4.33l1.56 3.188-.78 1.925L0 10.586v2.828l.36.12 2.94 1.083.78 1.924-1.5 3.309 1.92 1.985.36-.18 2.76-1.444 1.86.781L10.68 24h2.58l.12-.36 1.08-2.587 1.86-.782 3.18 1.564 1.92-1.985-.18-.361-1.38-2.827.78-1.925 3.3-1.203v-3.008H24zM7.2 11.97c0-2.647 2.16-4.812 4.8-4.812 2.64 0 4.8 2.165 4.8 4.812 0 2.647-2.16 4.812-4.8 4.812-2.64 0-4.8-2.165-4.8-4.812z"></path></svg>
                                 <div className="flex-1 py-1">Settings</div>
