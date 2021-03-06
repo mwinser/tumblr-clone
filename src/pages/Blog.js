@@ -6,7 +6,7 @@ import Header from '../components/Header'
 
 
 function Blog() {
-    const {photos} = useContext(DatabaseContext)
+    const {photos, currentUserData} = useContext(DatabaseContext)
     const {blogName} = useParams() 
     
     
@@ -14,13 +14,17 @@ function Blog() {
     return(
         <>
             <Header/>
-            <div className="bg-navy max-w-990px mx-auto mt-10 px-2 flex items-start text-white">
+            <div className="bg-navy max-w-990px mx-auto mt-10 px-2 flex flex-col items-start text-white">
+            <div className="SEARCHTERM w-full text-center text-5xl max-w-625px mb-10">
+                        {blogName}
+                    </div>
                 <div className="FEED flex items-end flex-col w-full max-w-625px">
-                    {photos
+                    {currentUserData && 
+                        photos
                         .filter(photo=>photo.username===blogName)
                         .sort((a,b)=>b.dateCreated-a.dateCreated)
                         .map((item, index)=>(
-                            <Post key={index} item={item}/>
+                            <Post key={index} item={item} currentUserData={currentUserData}/>
                         ))
                     }
                 </div>
