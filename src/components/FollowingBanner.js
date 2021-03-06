@@ -8,7 +8,6 @@ function FollowingBanner(props){
     const {follow, unfollow} = useContext(DatabaseContext)
 
     const blog = props.blog
-    const currentUsername = props.currentUserData.username
    
     
     

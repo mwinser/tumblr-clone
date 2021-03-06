@@ -225,7 +225,7 @@ function Header(){
             </div>
         </header>
         ) : (
-            <div>Loading</div>
+            <div>Loading {error && error}</div>
         )
     )
 }

@@ -8,6 +8,7 @@ function ContextProvider({children}) {
     const [blogName, setBlogName] = useState('')
     const [currentUser, setCurrentUser] = useState({uid: '0', email: 'guest'})
     const [isLoading, setIsLoading] = useState(true)
+    
 
 
     function signup(email, password) {
@@ -27,13 +28,17 @@ function ContextProvider({children}) {
     }
 
     useEffect(()=>{
+        
         const unsubscribe = auth.onAuthStateChanged(user=> {
-            user && setCurrentUser(user)
+            user ? setCurrentUser(user) : setCurrentUser({uid: '0', email: 'guest'})
             setIsLoading(false)
             
             
         })
-        return unsubscribe
+        
+        return ()=> {
+            setIsLoading(true)
+            return unsubscribe}
     }, [])
     
 

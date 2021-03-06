@@ -14,17 +14,18 @@ function DatabaseContextProvider({children}) {
 
     const getBlogs = async () => {
         const response = await database.users.get()
-        response.docs.forEach(doc=>setBlogs(prevBlogs=> [...prevBlogs,{...doc.data(), dataId: doc.id}]))
-        const dataId = response.docs.find(doc=>doc.data().userId===currentUser.uid).id
-        console.log(currentUser.uid)
-        setCurrentUserData({...response.docs.find(doc=>doc.data().userId===currentUser.uid).data(), dataId: dataId})
+        const blogs = response.docs.map(doc=>{return {...doc.data(), dataId: doc.id}})
+        setBlogs(blogs)
+        const user = response.docs.find(doc=>doc.data().userId===currentUser.uid)
+        setCurrentUserData({...user.data(), dataId: user.id})
 
         
     }
 
     const getPhotos = async () => {
         const response = await database.photos.get()
-        response.docs.forEach(doc=>setPhotos(prevPhotos=> [...prevPhotos,{...doc.data(), postId: doc.id}]))
+        const photos = response.docs.map(doc=>{return {...doc.data(), postId: doc.id}})
+        setPhotos(photos)
         
     }
 
