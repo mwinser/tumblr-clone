@@ -78,7 +78,7 @@ function CreatePost() {
                     />
                 </form>
                 <div onClick={updatePreview}>Click to Preview</div>
-                <img className="w-48" id="imgPreview"/>
+                <img alt="upload preview" className="w-48" id="imgPreview"/>
                 </div>
 
 
