@@ -15,6 +15,9 @@ module.exports = {
         '625px': '625px',
         '320px': '320px'
       },
+      maxHeight: {
+        '112' : '28rem'
+      },
       colors: {
         'navy': '#001935'
       }

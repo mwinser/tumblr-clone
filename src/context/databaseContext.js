@@ -10,6 +10,7 @@ function DatabaseContextProvider({children}) {
     const [currentUserData, setCurrentUserData] = useState()
     const [photos, setPhotos] = useState([])
     const [blogs, setBlogs] = useState([])
+    const [isCreateMenuOpen, setIsCreateMenuOpen] = useState(false)
 
 
     const getBlogs = async () => {
@@ -77,6 +78,8 @@ function DatabaseContextProvider({children}) {
             photos,
             blogs,
             currentUserData,
+            isCreateMenuOpen,
+            setIsCreateMenuOpen,
             addFavorite,
             removeFavorite,
             follow,

@@ -1,12 +1,12 @@
 import React, {useContext} from 'react'
-import {Link} from 'react-router-dom'
+
 import {DatabaseContext} from '../context/databaseContext'
 import Post from '../components/Post'
-import * as ROUTES from '../constants/routes'
+
 
 
 function Feed() {
-    const {photos, currentUserData} = useContext(DatabaseContext)
+    const {photos, currentUserData, setIsCreateMenuOpen} = useContext(DatabaseContext)
 
     return(
         currentUserData ? (
@@ -21,21 +21,19 @@ function Feed() {
                         alt="avatar" 
                         src="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"/>
                 </div>
-                <div className="w-16 h-16 py-1 flex flex-col items-center">
-                    <Link to={ROUTES.CREATE_POST}>
+                <div onClick={()=>setIsCreateMenuOpen(true)} className="w-16 h-16 py-1 flex flex-col items-center">
                         <svg viewBox="0 0 20.8 13" width="40" height="35" fill="black"><path d="M.1 13h2.8l.9-3h4.7l.8 3h2.9L7.7 0h-3L.1 13zm6-10.1l2 5.1H4.2l1.9-5.1zM20 10V6c0-1.1-.2-1.9-1-2.3-.7-.5-1.7-.7-2.7-.7-1.6 0-2.7.4-3.4 1.2-.4.5-.6 1.2-.7 2h2.4c.1-.4.2-.6.4-.8.2-.3.6-.4 1.2-.4.5 0 .9.1 1.2.2.3.1.4.4.4.8 0 .3-.2.5-.5.7-.2.1-.5.2-1 .2l-.9.1c-1 .1-1.7.3-2.2.6-.9.5-1.4 1.3-1.4 2.5 0 .9.3 1.6.8 2 .6.5 1.3.9 2.2.9.7 0 1.2-.3 1.7-.6.4-.2.8-.6 1.2-.9 0 .2 0 .4.1.6 0 .2.1.8.2 1h2.7v-.8c-.1-.1-.3-.2-.4-.3.1-.3-.3-1.7-.3-2zm-2.2-1.1c0 .8-.3 1.4-.7 1.7-.4.3-1 .5-1.5.5-.3 0-.6-.1-.9-.3-.2-.2-.4-.5-.4-.9 0-.5.2-.8.6-1 .2-.1.6-.2 1.1-.3l.6-.1c.3-.1.5-.1.7-.2.2-.1.3-.1.5-.2v.8z"></path></svg>
                         <div>Text</div>
-                    </Link>
                 </div>
-                <div className="w-16 h-16 py-1 flex flex-col items-center">
+                <div onClick={()=>setIsCreateMenuOpen(true)}  className="w-16 h-16 py-1 flex flex-col items-center">
                     <svg viewBox="0 0 17 15" width="40" height="35" fill="red"><path d="M14.6 1h-2.7l-.6-1h-6l-.6 1H2.4C1.1 1 0 2 0 3.3v9.3C0 13.9 1.1 15 2.4 15h12.2c1.3 0 2.4-1.1 2.4-2.4V3.3C17 2 15.9 1 14.6 1zM8.3 13.1c-2.9 0-5.2-2.3-5.2-5.1s2.3-5.1 5.2-5.1c2.9 0 5.2 2.3 5.2 5.1s-2.3 5.1-5.2 5.1zm5.9-8.3c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1s1.1.5 1.1 1.1c0 .6-.5 1.1-1.1 1.1zm-10 3.1c0 1.2.5 2.2 1.3 3 0-.2 0-.4-.1-.6 0-2.2 1.8-4 4.1-4 1.1 0 2 .4 2.8 1.1-.3-2-2-3.4-4-3.4-2.2-.1-4.1 1.7-4.1 3.9z"></path></svg>
                     <div>Photo</div>
                 </div>
-                <div className="w-16 h-16 py-1 flex flex-col items-center">
+                <div onClick={()=>setIsCreateMenuOpen(true)}  className="w-16 h-16 py-1 flex flex-col items-center">
                 <svg viewBox="0 0 17 13" width="40" height="35" fill="orange"><path d="M3.5 5.5C4 3.7 5.8 2.4 7.2 1.3L5.9 0C3 1.8 0 5 0 8.5 0 11 1.3 13 4 13c2 0 3.7-1.5 3.7-3.6C7.7 7 6 5.5 3.5 5.5zm9.3 0c.4-1.8 2.2-3.1 3.7-4.2L15.2 0c-2.8 1.8-5.9 5-5.9 8.5 0 2.4 1.3 4.5 4 4.5 2 0 3.7-1.5 3.7-3.6 0-2.4-1.7-3.9-4.2-3.9z"></path></svg>
                     <div>Quote</div>
                 </div>
-                <div className="w-16 h-16 py-1 flex flex-col items-center">
+                <div onClick={()=>setIsCreateMenuOpen(true)}  className="w-16 h-16 py-1 flex flex-col items-center">
                 <svg viewBox="0 0 17 17" width="40" height="35" fill="green"><path d="M9.9 5.1c-.2.3-.5 1.4-.6 2.6l1.1-.1c.7-.1 1.3-.3 1.5-.5.6-.6.6-1.4 0-2-.6-.5-1.4-.5-2 0zM8.5 0C3.8 0 0 3.8 0 8.5S3.8 17 8.5 17 17 13.2 17 8.5 13.2 0 8.5 0zm4.4 8.2c-.5.5-1.5.8-2.5.9l-1.2.2c-.1 1.3-.4 2.9-1 3.6-1.1 1.1-3 1.2-4.1 0-1.1-1.1-1.1-3 0-4.1.5-.5 1.5-.8 2.6-.9v1.5c-1.2.3-1.5.5-1.6.5-.6.6-.6 1.4 0 2 .5.5 1.4.5 2 0 .2-.2.5-1.1.6-2.5l.1-.9c0-1.3.2-3.6 1-4.4 1.1-1.1 3-1.2 4.1 0 1.2 1.1 1.2 2.9 0 4.1z"></path></svg>
                     <div>Link</div>
                 </div>

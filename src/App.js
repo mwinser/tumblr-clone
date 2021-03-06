@@ -15,7 +15,7 @@ const Blog = lazy(()=> import('./pages/Blog'))
 const Likes = lazy(()=> import('./pages/Likes'))
 const Following = lazy(()=> import('./pages/Following'))
 const Recommended = lazy(()=> import('./pages/Recommended'))
-const CreatePost = lazy(()=> import('./pages/CreatePost'))
+
 
 
 function App() {
@@ -33,7 +33,6 @@ function App() {
           <PrivateRoute path={ROUTES.INBOX} component={Inbox}/>
           <PrivateRoute path={ROUTES.BLOG + "/:blogName"} component={Blog}/>
           <PrivateRoute path={ROUTES.RECOMMENDED} component={Recommended}/>
-          <PrivateRoute path={ROUTES.CREATE_POST} component={CreatePost}/>
           <PrivateRoute path={ROUTES.LIKES} component={Likes}/>
           <PrivateRoute path={ROUTES.FOLLOWING} component={Following}/>
           <PrivateRoute component={NotFound}/>

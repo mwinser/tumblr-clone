@@ -3,6 +3,7 @@ import {Link, useHistory} from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import {DatabaseContext} from '../context/databaseContext'
 import {Context} from '../context/Context'
+import CreatePost from './CreatePost'
 
 
 function Header(){
@@ -10,7 +11,7 @@ function Header(){
     const [search, setSearch] = useState('')
     const [error, setError] = useState('')
     const history = useHistory()
-    const {photos, currentUserData} = useContext(DatabaseContext)
+    const {photos, currentUserData, isCreateMenuOpen, setIsCreateMenuOpen} = useContext(DatabaseContext)
     const {logout} = useContext(Context)
 
     async function handleLogout() {
@@ -35,7 +36,8 @@ function Header(){
 
     return (
         currentUserData ? (
-        <header className="sticky top-0 left-0 z-50 bg-navy flex justify-center border-b-2 border-white border-opacity-10">
+        <header className="sticky top-0 left-0 z-10 bg-navy flex justify-center border-b-2 border-white border-opacity-10">
+            {isCreateMenuOpen && <CreatePost/>}
             <div className="relative max-w-screen-2xl w-full flex items-center justify-between h-14 text-white  mx-auto, pl-6 pr-5">
                 
                 <div className="flex m-2 p-1 justify-center items-center">
@@ -95,11 +97,11 @@ function Header(){
                         <svg viewBox="0 0 15 18.9" width="15" height="21"><path d="M7.5 8.8c2.6 0 4.7-2 4.7-4.4S10.1 0 7.5 0 2.8 2 2.8 4.4C2.9 6.8 5 8.8 7.5 8.8zm0 1.5c-4.2 0-7.5 3.2-7.5 7.4 0 .6.5 1.2 1.2 1.2h12.6c.7 0 1.2-.5 1.2-1.2 0-4.1-3.3-7.4-7.5-7.4z"></path></svg>
                     </div>
                     
-                    <Link to={ROUTES.CREATE_POST}>
-                        <div className="mx-4 py-1.5 px-3 bg-blue-400 rounded">
-                            <svg viewBox="0 0 16.8 16.8" width="22" height="22" fill="#001935"><path d="M1.2 11.9l-1.2 5 5-1.2 8.2-8.2-3.8-3.8-8.2 8.2zM10 6.3l-6.2 6.2-.6-.6 6.2-6.2c0-.1.6.6.6.6zM13.1 0l-2.5 2.5 3.7 3.7 2.5-2.5L13.1 0z"></path></svg>
-                        </div>
-                    </Link>
+                    
+                    <div  onClick={()=>setIsCreateMenuOpen(true)} className="mx-4 py-1.5 px-3 bg-blue-400 rounded">
+                        <svg viewBox="0 0 16.8 16.8" width="22" height="22" fill="#001935"><path d="M1.2 11.9l-1.2 5 5-1.2 8.2-8.2-3.8-3.8-8.2 8.2zM10 6.3l-6.2 6.2-.6-.6 6.2-6.2c0-.1.6.6.6.6zM13.1 0l-2.5 2.5 3.7 3.7 2.5-2.5L13.1 0z"></path></svg>
+                    </div>
+                    
                     
                 </div>
                 <div className={"fixed "+ (!isMenuOpen && "hidden") + " top-0 right-0 mt-12 mr-2.5 w-60 rounded"}>
