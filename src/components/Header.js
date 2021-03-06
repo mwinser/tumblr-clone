@@ -35,8 +35,8 @@ function Header(){
 
     return (
         currentUserData ? (
-        <header className="sticky top-0 left-0 z-50 bg-navy border-b-2 border-white border-opacity-10">
-            <div className="relative flex items-center justify-between h-14 text-white  mx-auto, pl-6 pr-5">
+        <header className="sticky top-0 left-0 z-50 bg-navy flex justify-center border-b-2 border-white border-opacity-10">
+            <div className="relative max-w-screen-2xl w-full flex items-center justify-between h-14 text-white  mx-auto, pl-6 pr-5">
                 
                 <div className="flex m-2 p-1 justify-center items-center">
                         <Link to={ROUTES.DASHBOARD}>
