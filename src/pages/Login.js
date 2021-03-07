@@ -5,7 +5,7 @@ import {Context} from "../context/Context"
 import * as ROUTES from '../constants/routes'
 
 function Login() {
-    const {emailAddress, setEmailAddress, login} = useContext(Context)
+    const {emailAddress, setEmailAddress, login, currentUser} = useContext(Context)
     const history = useHistory()
     const [search, setSearch] = useState('')
     const [emailExists, setEmailExists] = useState(false)
@@ -91,6 +91,10 @@ function Login() {
                 <p className="font-bold text-lg text-center text-white mt-2">
                     Make stuff, look at stuff, talk about stuff, find your people.
                 </p>
+                <p className="text-center text-white">{`Currently signed in as ${currentUser.email}`}</p>
+                {currentUser.email==='guest' &&
+                    <p className="text-center text-white">Guests cannot post, follow or like.</p>
+                }
                 {error && 
                     (<p className="text-white text-sm text-center bg-black bg-opacity-25 rounded p-2 m-4">
                         {error}
