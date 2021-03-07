@@ -36,8 +36,10 @@ function Signup() {
                 avatar: '1',
                 dateCreated: Date.now()
             })
+            setTimeout(()=>{
+                history.push(ROUTES.DASHBOARD)
+            },1000)
             
-            history.push(ROUTES.DASHBOARD)
 
         } catch(error) {
             setEmailAddress('')
