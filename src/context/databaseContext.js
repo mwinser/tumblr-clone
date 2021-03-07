@@ -20,7 +20,7 @@ function DatabaseContextProvider({children}) {
             setTimeout(()=>{
                 const user = doc.docs.find(doc=>doc.data().userId===currentUser.uid)
                 setCurrentUserData({...user.data(), dataId: user.id})
-            },1500)
+            },500)
         })
 
     }
