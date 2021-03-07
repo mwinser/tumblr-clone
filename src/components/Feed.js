@@ -16,7 +16,7 @@ function Feed() {
         <div className="FEED flex items-end flex-col w-full max-w-625px">
             <CreateMenu/>
             {photos
-                .filter((photo)=>photo.username!==currentUserData.username)
+                
                 .sort((a,b)=>b.dateCreated-a.dateCreated)
                 .map((item, index)=>(
                     <Post key={index} item={item} 
