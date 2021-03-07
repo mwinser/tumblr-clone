@@ -93,12 +93,12 @@ function Header(){
                         <svg viewBox="0 0 13.8 19.6" width="14" height="21"><path d="M3.5 19.5c-.1 0-.2-.1-.2-.1-.6-.3-.9-.9-.7-1.5l2.2-5.8H1.3c-.1 0-.3 0-.4-.1-.4-.1-.6-.3-.8-.6-.2-.4-.2-1 .2-1.4L8.9.5c.3-.4.9-.6 1.4-.4.1 0 .2.1.2.1.6.3.9.9.7 1.5L9 7h3.5c.1 0 .3 0 .4.1.4.1.6.5.7.8.2.4.2 1-.2 1.4L4.8 19c-.2.3-.6.5-1 .5 0 .1-.2.1-.3 0z"></path></svg>
                     </div>
                     
-                    <div className="mx-4 opacity-70" onClick={()=>toggleMenu()}>
+                    <div className="mx-4 opacity-70 cursor-pointer" onClick={()=>toggleMenu()}>
                         <svg viewBox="0 0 15 18.9" width="15" height="21"><path d="M7.5 8.8c2.6 0 4.7-2 4.7-4.4S10.1 0 7.5 0 2.8 2 2.8 4.4C2.9 6.8 5 8.8 7.5 8.8zm0 1.5c-4.2 0-7.5 3.2-7.5 7.4 0 .6.5 1.2 1.2 1.2h12.6c.7 0 1.2-.5 1.2-1.2 0-4.1-3.3-7.4-7.5-7.4z"></path></svg>
                     </div>
                     
                     
-                    <div  onClick={()=>setIsCreateMenuOpen(true)} className="mx-4 py-1.5 px-3 bg-blue-400 rounded">
+                    <div  onClick={()=>setIsCreateMenuOpen(true)} className="mx-4 py-1.5 px-3 bg-blue-400 rounded cursor-pointer">
                         <svg viewBox="0 0 16.8 16.8" width="22" height="22" fill="#001935"><path d="M1.2 11.9l-1.2 5 5-1.2 8.2-8.2-3.8-3.8-8.2 8.2zM10 6.3l-6.2 6.2-.6-.6 6.2-6.2c0-.1.6.6.6.6zM13.1 0l-2.5 2.5 3.7 3.7 2.5-2.5L13.1 0z"></path></svg>
                     </div>
                     

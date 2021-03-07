@@ -2,15 +2,17 @@ import React, {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import {DatabaseContext} from '../context/databaseContext'
+import SidePost from './SidePost'
 import Post from './Post'
 
 
 function Sidebar() {
-    const {blogs, photos, currentUserData} = useContext(DatabaseContext)
+    const {blogs, photos, currentUserData, follow, unfollow} = useContext(DatabaseContext)
     
 
 
     return(
+        currentUserData ? 
         <div className="SIDEBAR relative flex-1 max-w-320px flex flex-col flex-start ml-8 w-80">
             <div className="BLOGSCARD mb-9">
                 <div className="text-xl font-bold px-2.5 pb-2.5 border-b-2">
@@ -18,33 +20,7 @@ function Sidebar() {
                 </div>
                 <ul className="py-2.5">
                     {blogs.sort((a,b)=>b.followers.length-a.followers.length).slice(0,4).map((blog, index)=>(
-                        <Link to={`${ROUTES.BLOG}/${blog.username}`}>
-                            <li key={`blog${index}`} className="flex justify-between py-2 px-2.5">
-                                
-                                <div className="flex items-center justify-center">
-                                    <div className="AVATAR mr-3 w-10 h-10">
-                                            <img 
-                                                className="rounded"
-                                                alt="avatar" 
-                                                src="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                                            />
-                                        
-                                    </div>
-                                    <div className="flex-1 flex flex-col justify-center items-start">
-                                        <div className="font-bold">
-                                            {blog.username}
-                                        </div>
-                                        <div>Description</div>
-                                    </div>
-                                </div>
-                                <div className="flex font-bold items-center mr-2.5">
-                                    <span>
-                                        Follow
-                                    </span>
-                                </div>
-                                
-                            </li>
-                        </Link>
+                        <SidePost key={`blog${index}`} blog={blog} currentUserData={currentUserData}/>
                     ))}
                 </ul>
                 <div className="mt-3 pl-2.5">
@@ -78,7 +54,8 @@ function Sidebar() {
             </div>
 
         
-    </div>
+        </div>
+        : <div>Loading...</div>
     )
 
 }
