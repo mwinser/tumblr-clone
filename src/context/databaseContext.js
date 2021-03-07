@@ -37,7 +37,7 @@ function DatabaseContextProvider({children}) {
         getPhotos()
         getBlogs()
      
-
+    // eslint-disable-next-line
     },[currentUser])
 
     function addFavorite (postId, username) {

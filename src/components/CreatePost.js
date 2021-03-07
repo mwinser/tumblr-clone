@@ -35,7 +35,7 @@ function CreatePost() {
                 url = null
             }
 
-            const response = await database.photos.add({
+            await database.photos.add({
                 photoId: null,
                 username: currentUserData.username,
                 type: type,
