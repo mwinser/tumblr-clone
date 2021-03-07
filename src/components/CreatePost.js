@@ -43,7 +43,8 @@ function CreatePost() {
                 hashTags: ['#firstpost'],
                 dateCreated: Date.now()
             })
-            console.log("Post added with ID: " + response.id)
+            console.log("Post added to database")
+            setIsCreateMenuOpen(false)
             
         } catch (error) {
             console.log(error)
