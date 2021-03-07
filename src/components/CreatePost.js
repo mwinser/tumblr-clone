@@ -6,6 +6,7 @@ function CreatePost() {
     
     const {currentUserData, setIsCreateMenuOpen} = useContext(DatabaseContext)
     const [caption, setCaption] = useState('')
+
     // let uploadedImage
 
     // const updatePreview = () => {
@@ -106,12 +107,23 @@ function CreatePost() {
                     <div className="font-bold text-white bg-gray-400 py-1 px-2 rounded cursor-pointer" onClick={()=>setIsCreateMenuOpen(false)}>
                         Close
                     </div>
-                    <div 
-                        className="font-bold text-white bg-blue-400 py-1 px-2 rounded cursor-pointer"
-                        onClick={(e)=>handleSubmit(e)}
-                    >
-                        Post
-                    </div>
+                    {currentUserData.username==='guest' &&
+                        <div className="font bold text-red-700">
+                            Guests cannot post
+                        </div>
+                    }
+                    {currentUserData.username==='guest' ? 
+                        <button disabled className="font-bold text-white bg-blue-400 py-1 px-2 rounded cursor-not-allowed" onClick={(e)=>handleSubmit(e)}>
+                            Post
+                        </button>
+                        
+
+                        :
+                        <button className="font-bold text-white bg-blue-400 py-1 px-2 rounded cursor-pointer" onClick={(e)=>handleSubmit(e)}>
+                            Post
+                        </button>
+                    }
+                    
                 </div>
             </div>
         </div>

@@ -19,9 +19,13 @@ function Blog() {
                 
             
                 <div className="FEED flex items-end flex-col w-full max-w-625px">
-                    <CreateMenu/>
+                    {currentUserData && 
+                        currentUserData.username===blogName &&
+                            <CreateMenu/>
+                    }
                     
                     {currentUserData && 
+                                                
                         photos
                         .filter(photo=>photo.username===blogName)
                         .sort((a,b)=>b.dateCreated-a.dateCreated)
