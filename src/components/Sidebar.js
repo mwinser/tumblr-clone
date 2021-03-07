@@ -21,7 +21,7 @@ function Sidebar() {
                         <SidePost key={`blog${index}`} blog={blog} currentUserData={currentUserData}/>
                     ))}
                 </ul>
-                <div className="mt-3 pl-2.5">
+                <div className="mt-3 pl-2.5 text-blue-400">
                     <Link to={ROUTES.RECOMMENDED}>
                         Explore all of Tumblr
                     </Link>
