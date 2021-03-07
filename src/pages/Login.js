@@ -110,6 +110,7 @@ function Login() {
                     />
                     {emailExists && 
                     (<input 
+                        autoFocus
                         type="password" 
                         value={password}
                         placeholder="Password" 
