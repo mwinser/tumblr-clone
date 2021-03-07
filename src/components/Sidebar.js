@@ -8,8 +8,6 @@ import Post from './Post'
 
 function Sidebar() {
     const {blogs, photos, currentUserData} = useContext(DatabaseContext)
-    
-
 
     return(
         currentUserData ? 
