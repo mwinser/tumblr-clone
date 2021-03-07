@@ -7,6 +7,7 @@ function CreatePost() {
     const {currentUserData, setIsCreateMenuOpen} = useContext(DatabaseContext)
     const [caption, setCaption] = useState('')
     const [showPreview, setShowPreview] = useState(false)
+    const [isUploading, setIsUploading] = useState(false)
 
     // let uploadedImage
 
@@ -21,7 +22,7 @@ function CreatePost() {
     }
     async function handleSubmit (e) {
         e.preventDefault()
-
+        setIsUploading(true)
         try {
             let url
             let type = "text"
@@ -46,12 +47,13 @@ function CreatePost() {
                 hashTags: ['#firstpost'],
                 dateCreated: Date.now()
             })
-            console.log("Post added to database")
             setIsCreateMenuOpen(false)
             
         } catch (error) {
             console.log(error)
+            setIsUploading(false)
         }
+        
     }
         return (
             <div className="MODAL absolute top-0 left-0 z-20 w-full h-screen bg-navy bg-opacity-90 flex justify-center items-center">
@@ -70,7 +72,7 @@ function CreatePost() {
                 </div>
                 <div className="flex flex-col">
                     <div className="flex font-bold text-gray-400 mb-5 bg-gray-200 border-t-2 border-b-2 border-dashed border-gray-400 divide-x divide-gray-400">
-                        <label for="image" className="w-72 h-48 flex flex-col justify-center items-center cursor-pointer">
+                        <label htmlFor="image" className="w-72 h-48 flex flex-col justify-center items-center cursor-pointer">
                             <input 
                                 type="file" 
                                 id="image" 
@@ -130,9 +132,9 @@ function CreatePost() {
                             Guests cannot post
                         </div>
                     }
-                    {currentUserData.username==='guest' ? 
+                    {currentUserData.username==='guest' || isUploading ? 
                         <button disabled className="font-bold text-white bg-gray-400 py-1 px-2 rounded cursor-not-allowed" onClick={(e)=>handleSubmit(e)}>
-                            Post
+                            {isUploading ? "Posting..." : "Post"}
                         </button>
                         
 

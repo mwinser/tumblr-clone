@@ -11,7 +11,7 @@ function FollowingBanner(props){
    
     
     
-    const [isFollowed, setIsFollowed] = useState(props.currentUserData.following.some(user=>user===blog.username)) 
+    const [isFollowed, setIsFollowed] = useState(true) 
 
 
 
