@@ -1,21 +1,20 @@
 import React, {useState, useContext} from 'react'
 import {database, storage} from '../lib/firebase'
-import {Context} from '../context/Context'
 import {DatabaseContext} from '../context/databaseContext'
 
 function CreatePost() {
-    const {currentUser} = useContext(Context)
-    const {blogs, currentUserData, setIsCreateMenuOpen} = useContext(DatabaseContext)
+    
+    const {currentUserData, setIsCreateMenuOpen} = useContext(DatabaseContext)
     const [caption, setCaption] = useState('')
-    let uploadedImage
+    // let uploadedImage
 
-    const updatePreview = () => {
-        console.log('updateRan')
-        const preview = document.getElementById('imgPreview')
-        uploadedImage = document.getElementById('image').files[0]
-        preview.src = URL.createObjectURL(uploadedImage)
+    // const updatePreview = () => {
+    //     console.log('updateRan')
+    //     const preview = document.getElementById('imgPreview')
+    //     uploadedImage = document.getElementById('image').files[0]
+    //     preview.src = URL.createObjectURL(uploadedImage)
 
-    }
+    // }
     async function handleSubmit (e) {
         e.preventDefault()
 
