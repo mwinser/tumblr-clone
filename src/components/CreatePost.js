@@ -6,16 +6,20 @@ function CreatePost() {
     
     const {currentUserData, setIsCreateMenuOpen} = useContext(DatabaseContext)
     const [caption, setCaption] = useState('')
+    const [showPreview, setShowPreview] = useState(false)
 
     // let uploadedImage
 
-    // const updatePreview = () => {
-    //     console.log('updateRan')
-    //     const preview = document.getElementById('imgPreview')
-    //     uploadedImage = document.getElementById('image').files[0]
-    //     preview.src = URL.createObjectURL(uploadedImage)
-
-    // }
+    function updatePreview (e) {
+        console.log('updateRan')
+        setShowPreview(true)
+        setTimeout(()=>{
+            const preview = document.getElementById('img-preview')
+            preview.src = URL.createObjectURL(e.target.files[0])
+        }, 1000)
+        
+        
+    }
     async function handleSubmit (e) {
         e.preventDefault()
 
@@ -68,16 +72,30 @@ function CreatePost() {
                 <div className="flex flex-col">
                     <div className="flex font-bold text-gray-400 mb-5 bg-gray-200 border-t-2 border-b-2 border-dashed border-gray-400 divide-x divide-gray-400">
                         <label for="image" className="w-72 h-48 flex flex-col justify-center items-center cursor-pointer">
-                            <input type="file" id="image" name="image" accept="image/*" style={{display:"none"}}/>
-                            <svg className="w-16 h-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-                            </svg>
-                            <div>
-                                Upload photos
-                            </div> 
-                            <div>
-                                :)
-                            </div>
+                            <input 
+                                type="file" 
+                                id="image" 
+                                name="image" 
+                                accept="image/*" 
+                                onChange={updatePreview} 
+                                style={{display:"none"}}
+                            />
+                            {showPreview ? 
+                                <img className="cover max-h-full max-w-full" id="img-preview" alt="preview upload"/>
+                                :
+                                <>
+                                    <svg className="w-16 h-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+                                    </svg>
+                                    <div>
+                                        Upload photos
+                                    </div> 
+                                    <div>
+                                        :)
+                                    </div>
+                                </>
+                            }
+                            
                         </label>
                         <div className="w-72 h-48 flex flex-col justify-center items-center">
                         <svg className="w-16 h-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -114,13 +132,13 @@ function CreatePost() {
                         </div>
                     }
                     {currentUserData.username==='guest' ? 
-                        <button disabled className="font-bold text-white bg-blue-400 py-1 px-2 rounded cursor-not-allowed" onClick={(e)=>handleSubmit(e)}>
+                        <button disabled className="font-bold text-white bg-gray-400 py-1 px-2 rounded cursor-not-allowed" onClick={(e)=>handleSubmit(e)}>
                             Post
                         </button>
                         
 
                         :
-                        <button className="font-bold text-white bg-blue-400 py-1 px-2 rounded cursor-pointer" onClick={(e)=>handleSubmit(e)}>
+                        <button disabled={!showPreview && caption===''} className={`font-bold text-white  py-1 px-2 rounded ${!showPreview && caption==='' ? "bg-gray-400 cursor-not-allowed": "bg-blue-400 cursor-pointer"}`} onClick={(e)=>handleSubmit(e)}>
                             Post
                         </button>
                     }
