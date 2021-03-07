@@ -11,7 +11,6 @@ function CreatePost() {
     // let uploadedImage
 
     function updatePreview (e) {
-        console.log('updateRan')
         setShowPreview(true)
         setTimeout(()=>{
             const preview = document.getElementById('img-preview')
