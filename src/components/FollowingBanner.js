@@ -16,7 +16,7 @@ function FollowingBanner(props){
 
 
     return (
-    <div className="POSTS relative text-black bg-white w-10/12 rounded">
+    <div className="POSTS relative text-black bg-white w-10/12 rounded mb-4">
         <div className="HEADER flex justify-between p-3 text-sm">
             <div className="flex gap-2 items-center">
                 <div className="AVATAR w-10 h-10">

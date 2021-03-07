@@ -21,14 +21,11 @@ function Signup() {
         setError('')
         try {
             setIsLoading(true)
+
             const createdUserResult = await signup(emailAddress, password)
-
-            await createdUserResult.user.updateProfile({
-                displayName: blogName
-            })
-
+            
             await database.users.add({
-                userId: createdUserResult.user.uid,
+                userId: emailAddress,
                 username: blogName,
                 emailAddress: emailAddress,
                 following: [''],
@@ -36,6 +33,14 @@ function Signup() {
                 avatar: '1',
                 dateCreated: Date.now()
             })
+
+            
+
+            await createdUserResult.user.updateProfile({
+                displayName: blogName
+            })
+
+            
             setTimeout(()=>{
                 history.push(ROUTES.DASHBOARD)
             },1000)

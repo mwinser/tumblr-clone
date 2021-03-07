@@ -13,32 +13,27 @@ function DatabaseContextProvider({children}) {
     const [isCreateMenuOpen, setIsCreateMenuOpen] = useState(false)
 
 
-    const getBlogs = async () => {
-        await database.users.onSnapshot((doc)=>{
+    useEffect(()=>{
+        const unsubUsers = database.users.onSnapshot((doc)=>{
             const blogs = doc.docs.map(doc=>{return {...doc.data(), dataId: doc.id}})
             setBlogs(blogs)
             setTimeout(()=>{
-                const user = doc.docs.find(doc=>doc.data().userId===currentUser.uid)
+                const user = doc.docs.find(doc=>doc.data().emailAddress===currentUser.email)
                 setCurrentUserData({...user.data(), dataId: user.id})
             },500)
         })
-
-    }
-
-    const getPhotos = async () => {
-        await database.photos.onSnapshot((doc)=>{
+        const unsubPhotos = database.photos.onSnapshot((doc)=>{
             const photos = doc.docs.map(doc=>{return {...doc.data(), postId: doc.id}})
             setPhotos(photos)
         })
-    }
 
-
-    useEffect(()=>{
-        getPhotos()
-        getBlogs()
+        return ()=> {
+            unsubUsers()
+            unsubPhotos()
+        }
      
     // eslint-disable-next-line
-    },[])
+    },[currentUser])
 
     function addFavorite (postId, username) {
         database.photos.doc(postId).update({
