@@ -7,7 +7,7 @@ import CreateMenu from './CreatMenu'
 
 
 function Feed() {
-    const {photos, currentUserData, setIsCreateMenuOpen} = useContext(DatabaseContext)
+    const {photos, currentUserData} = useContext(DatabaseContext)
 
     return(
         currentUserData ? (
@@ -28,7 +28,7 @@ function Feed() {
 
         </div>
         ) : (
-            <div className="text-5xl text-white">Loading...</div>
+            <div className="text-5xl text-white mr-8">Loading...</div>
         )
     )
 }
