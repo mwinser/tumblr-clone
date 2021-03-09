@@ -20,7 +20,7 @@ const Recommended = lazy(()=> import('./pages/Recommended'))
 
 function App() {
   return (
-    <div className="relative w-full h-full min-h-screen bg-navy">
+    <div className="relative min-w-min h-full min-h-screen bg-navy">
       <Suspense fallback={<p>Loading...</p>}>
         <Switch>
           <PrivateRoute exact path="/" component={Dashboard}/>

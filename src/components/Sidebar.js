@@ -28,7 +28,7 @@ function Sidebar() {
                 </div>
             </div>
             {currentUserData &&
-            <div className="RADARCARD mb-9">
+            <div className="RADARCARD mb-9 max-w-320px">
                 <div className="text-xl font-bold px-2.5 pb-2.5 border-b-2">
                     Radar
                 </div>
