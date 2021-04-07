@@ -1,4 +1,4 @@
-# This is a personal project to clone Tumblr in one week
+# A personal project to clone Tumblr in one week
 
 
 Users start out as guests, who can view and search for anything on the site, but cannot post, like or follow.
