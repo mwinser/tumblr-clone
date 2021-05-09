@@ -1,11 +1,12 @@
 import React, {useContext} from 'react'
 import Header from '../components/Header'
 import Post from '../components/Post'
+import SidePost from '../components/SidePost'
 import {DatabaseContext} from '../context/databaseContext'
 
 
 function Recommended() {
-    const {photos, currentUserData} = useContext(DatabaseContext)
+    const {blogs, photos, currentUserData} = useContext(DatabaseContext)
     return (
         <>
             <Header/>
@@ -120,44 +121,32 @@ function Recommended() {
                         </div>
                     </div>
 
+                    
                     <div className="w-full bg-gray-400 bg-opacity-10 rounded mt-4 mb-4">
                         <div className="flex border-b border-gray-600 p-4">
                             <div className="font-bold text-lg">
                                 Check out these blogs
                             </div>
                         </div>
-
-                        {[
-                            "keanuforever", 
-                            "danknaturememes", 
-                            "justquails", 
-                            "winser"
-                        ].map((userName)=> {
-                            return (
-                                <div className="flex justify-between">
-                                    <div className="flex items-center p-2">
-                                        <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
-                                        <div className="flex flex-col">
-                                            <div className="font-bold">
-                                                {userName}
-                                            </div>
-                                            <div className="text-gray-400">
-                                                Untitled
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-center items-center pr-3.5">
-                                        <div className="mr-2.5 text-blue-400">Follow</div>
-                                    </div>
-                                </div>)
-                        })}
-                        
+                        <ul className="py-2.5">
+                            {blogs.sort((a,b)=>b.followers.length-a.followers.length).slice(0,4).map((blog, index)=>(
+                                <SidePost key={`blog${index}`} blog={blog} currentUserData={currentUserData}/>
+                            ))}
+                        </ul>
                         <div className="flex justify-center border-t border-gray-600 mt-2 p-4">
                             <div className="font-bold text-blue-400">
                                 Show more blogs
                             </div>
                         </div>
                     </div>
+
+
+
+
+                    
+                        
+                        
+                    
                     
                 </div>
                 
