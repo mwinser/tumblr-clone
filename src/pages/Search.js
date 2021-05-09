@@ -23,7 +23,8 @@ function Search() {
                         {photos
                             .filter(photo=>
                                 photo.caption.includes(query) ||
-                                photo.username.includes(query)
+                                photo.username.includes(query) ||
+                                photo.hashTags.includes(query)
                             )
                             .sort((a,b)=>b.dateCreated-a.dateCreated)
                             .map((item, index)=>(
