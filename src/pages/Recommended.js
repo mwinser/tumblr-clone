@@ -15,30 +15,23 @@ function Recommended() {
                     <div className="w-full flex flex-col">
                         <div>
                             <div className="flex font-bold text-lg mb-5">
-                                <div className="flex px-4 py-3.5 border-b border-blue-300">
-                                    <div>
-                                        For You
-                                    </div>
-                                    <div className="ml-2">
-                                    💖
-                                    </div>
-                                </div>
-                                <div className="flex px-4 py-3.5  border-b border-gray-500">
-                                    <div>
-                                        Trending
-                                    </div>
-                                    <div className="ml-2">
-                                    🚀
-                                    </div>
-                                </div>
-                                <div className="flex px-4 py-3.5 border-b border-gray-500">
-                                    <div>
-                                        Staff Picks
-                                    </div>
-                                    <div className="ml-2">
-                                    🌟
-                                    </div>
-                                </div>
+                                {[
+                                    {title: "For You", icon: "💖"},
+                                    {title: "Trending", icon: "🚀"},
+                                    {title: "Staff Picks", icon: "🌟"}
+                                ].map(item => {
+                                    return (
+                                        <div className="flex px-4 py-3.5 border-b border-blue-300">
+                                            <div>
+                                                {item.title}
+                                            </div>
+                                            <div className="ml-2">
+                                                {item.icon}
+                                            </div>
+                                        </div>
+                                    )
+                                    })
+                                }
                                 <div className="flex items-center px-4 py-3.5 border-b border-gray-500">
                                     <div>
                                         More
@@ -55,48 +48,27 @@ function Recommended() {
                             </div>
                         </div>
                         <div className="flex justify-between mb-5">
-                            <div className="bg-yellow-500 flex flex-col p-2 mr-5 rounded mb-5">
-                                <div className="mb-2 text-black">
-                                    #art
-                                </div>
-                                <div className="flex">
-                                    <div className="w-14 h-24 bg-white rounded mr-2">pic</div>
-                                    <div className="w-14 h-24 bg-white rounded m1-2">pic</div>
-                                </div>
-                                <div className=" py-2 px-5 mt-2 text-center bg-black font-bold text-yellow-500 rounded">Follow</div>
-                            </div>
-                            <div className="bg-green-500 flex flex-col p-2 mr-5 rounded mb-5">
-                                <div className="mb-2">
-                                    #illustration
-                                </div>
-                                <div className="flex">
-                                    <div className="w-14 h-24 bg-white rounded mr-2">pic</div>
-                                    <div className="w-14 h-24 bg-white rounded m1-2">pic</div>
-                                </div>
-                                <div className=" py-2 px-5 mt-2 text-center bg-white font-bold text-green-500 rounded">
-                                    Follow
-                                </div>
-                            </div>
-                            <div className="bg-indigo-500 flex flex-col p-2 mr-5 rounded mb-5">
-                                <div className="mb-2">
-                                    #biology
-                                </div>
-                                <div className="flex">
-                                    <div className="w-14 h-24 bg-white rounded mr-2">pic</div>
-                                    <div className="w-14 h-24 bg-white rounded m1-2">pic</div>
-                                </div>
-                                <div className=" py-2 px-5 mt-2 text-center bg-white font-bold text-indigo-500 rounded">Follow</div>
-                            </div>
-                            <div className="bg-red-500 flex flex-col p-2 rounded mb-5">
-                                <div className="mb-2 ">
-                                    #space
-                                </div>
-                                <div className="flex">
-                                    <div className="w-14 h-24 bg-white rounded mr-2">pic</div>
-                                    <div className="w-14 h-24 bg-white rounded m1-2">pic</div>
-                                </div>
-                                <div className=" py-2 px-5 mt-2 text-center bg-white font-bold text-red-500 rounded">Follow</div>
-                            </div>
+                            {[
+                                {tag: "#art", color: "yellow"},
+                                {tag: "#illustration", color: "green"},
+                                {tag: "#biology", color: "indigo"},
+                                {tag: "#space", color: "red"}
+                            ].map(item => {
+                                return (
+                                    <div className={`bg-${item.color||"blue"}-500 flex flex-col p-2 mr-5 rounded mb-5`}>
+                                        <div className={`mb-2 ${item.color === "yellow"? `text-black`:null}`}>
+                                            {item.tag}
+                                        </div>
+                                        <div className="flex">
+                                            <div className="w-14 h-24 bg-white rounded mr-2">pic</div>
+                                            <div className="w-14 h-24 bg-white rounded m1-2">pic</div>
+                                        </div>
+                                        <div className={`py-2 px-5 mt-2 text-center ${item.color === "yellow"? `bg-black`:`bg-white`} font-bold text-${item.color||"blue"}-500 rounded`}>Follow</div>
+                                    </div>
+                                    )
+                                })
+                            }
+                        
                         </div>
                     </div>
                 {currentUserData && photos
@@ -119,51 +91,28 @@ function Recommended() {
                                 Edit
                             </div>
                         </div>
-                        <div className="flex items-center p-4">
-                            <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
-                            <div className="flex flex-col">
-                                <div className="font-bold">
-                                    #curators
+                        {[
+                            {tag: "#curators", posts: "5"},
+                            {tag: "#design", posts: "740"},
+                            {tag: "#movies", posts: "520"},
+                            {tag: "#science", posts: "243"}
+                        ].map(item=>{
+                            return (
+                                <div className="flex items-center p-4">
+                                    <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
+                                    <div className="flex flex-col">
+                                        <div className="font-bold">
+                                            {item.tag}
+                                        </div>
+                                        <div className="text-gray-400">
+                                            <b>{item.posts}</b> recent posts
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="text-gray-400">
-                                    <b>5</b> recent posts
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex items-center p-4">
-                            <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
-                            <div className="flex flex-col">
-                                <div className="font-bold">
-                                    #design
-                                </div>
-                                <div className="text-gray-400">
-                                    <b>740</b> recent posts
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex items-center p-4">
-                            <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
-                            <div className="flex flex-col">
-                                <div className="font-bold">
-                                    #movies
-                                </div>
-                                <div className="text-gray-400">
-                                    <b>520</b> recent posts
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex items-center p-4">
-                            <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
-                            <div className="flex flex-col">
-                                <div className="font-bold">
-                                    #science
-                                </div>
-                                <div className="text-gray-400">
-                                    <b>243</b> recent posts
-                                </div>
-                            </div>
-                        </div>
-                        
+                            )
+                            })
+                        }
+                                                
                         <div className="flex justify-center border-t border-gray-600 mt-2 p-4">
                             <div className="font-bold text-blue-400">
                                 Show more tags
@@ -176,74 +125,32 @@ function Recommended() {
                             <div className="font-bold text-lg">
                                 Check out these blogs
                             </div>
-                           
                         </div>
-                        <div className="flex justify-between">
-                            <div className="flex items-center p-2">
-                                <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
-                                <div className="flex flex-col">
-                                    <div className="font-bold">
-                                        keanuforever
+
+                        {[
+                            "keanuforever", 
+                            "danknaturememes", 
+                            "justquails", 
+                            "winser"
+                        ].map((userName)=> {
+                            return (
+                                <div className="flex justify-between">
+                                    <div className="flex items-center p-2">
+                                        <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
+                                        <div className="flex flex-col">
+                                            <div className="font-bold">
+                                                {userName}
+                                            </div>
+                                            <div className="text-gray-400">
+                                                Untitled
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="text-gray-400">
-                                        Untitled
+                                    <div className="flex justify-center items-center pr-3.5">
+                                        <div className="mr-2.5 text-blue-400">Follow</div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="flex justify-center items-center pr-3.5">
-                                <div className="mr-2.5 text-blue-400">Follow</div>
-                            </div>
-                        </div>
-                        <div className="flex justify-between">
-                            <div className="flex items-center p-2">
-                                <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
-                                <div className="flex flex-col">
-                                    <div className="font-bold">
-                                        danknaturememes
-                                    </div>
-                                    <div className="text-gray-400">
-                                        Untitled
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex justify-center items-center pr-3.5">
-                                <div className="mr-2.5 text-blue-400">Follow</div>
-                            </div>
-                        </div>
-                        <div className="flex justify-between">
-                            <div className="flex items-center p-2">
-                                <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
-                                <div className="flex flex-col">
-                                    <div className="font-bold">
-                                        justquails
-                                    </div>
-                                    <div className="text-gray-400">
-                                        Untitled
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex justify-center items-center pr-3.5">
-                                <div className="mr-2.5 text-blue-400">Follow</div>
-                            </div>
-                        </div>
-                        <div className="flex justify-between">
-                            <div className="flex items-center p-2">
-                                <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
-                                <div className="flex flex-col">
-                                    <div className="font-bold">
-                                        winser
-                                    </div>
-                                    <div className="text-gray-400">
-                                        Untitled
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex justify-center items-center pr-3.5">
-                                <div className="mr-2.5 text-blue-400">Follow</div>
-                            </div>
-                        </div>
-                        
-                        
+                                </div>)
+                        })}
                         
                         <div className="flex justify-center border-t border-gray-600 mt-2 p-4">
                             <div className="font-bold text-blue-400">
