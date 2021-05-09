@@ -50,19 +50,32 @@ function Recommended() {
                         </div>
                         <div className="flex justify-between mb-5">
                             {[
-                                {tag: "#art", color: "yellow"},
-                                {tag: "#illustration", color: "green"},
-                                {tag: "#biology", color: "indigo"},
-                                {tag: "#space", color: "red"}
+                                {tag: "birds", color: "yellow"},
+                                {tag: "nature", color: "green"},
+                                {tag: "art", color: "indigo"},
+                                {tag: "space", color: "red"}
                             ].map(item => {
+                                const taggedPhotos = photos.filter(photo => photo.hashTags.includes(item.tag))
                                 return (
                                     <div className={`bg-${item.color||"blue"}-500 flex flex-col p-2 mr-5 rounded mb-5`}>
                                         <div className={`mb-2 ${item.color === "yellow"? `text-black`:null}`}>
-                                            {item.tag}
+                                            #{item.tag}
                                         </div>
                                         <div className="flex">
-                                            <div className="w-14 h-24 bg-white rounded mr-2">pic</div>
-                                            <div className="w-14 h-24 bg-white rounded m1-2">pic</div>
+                                            <div className="w-14 h-24 bg-white rounded mr-2">
+                                                <img 
+                                                    className="object-cover w-full h-full rounded"
+                                                    src={taggedPhotos[0].imageSrc}
+                                                    alt="user content"
+                                                />
+                                            </div>
+                                            <div className="w-14 h-24 bg-white rounded m1-2">
+                                            <img 
+                                                className="object-cover w-full h-full rounded"
+                                                src={taggedPhotos[1].imageSrc}
+                                                alt="user content"
+                                            />
+                                            </div>
                                         </div>
                                         <div className={`py-2 px-5 mt-2 text-center ${item.color === "yellow"? `bg-black`:`bg-white`} font-bold text-${item.color||"blue"}-500 rounded`}>Follow</div>
                                     </div>
@@ -93,20 +106,28 @@ function Recommended() {
                             </div>
                         </div>
                         {[
-                            {tag: "#curators", posts: "5"},
-                            {tag: "#design", posts: "740"},
-                            {tag: "#movies", posts: "520"},
-                            {tag: "#science", posts: "243"}
+                            {tag: "birds", posts: "5"},
+                            {tag: "nature", posts: "740"},
+                            {tag: "movies", posts: "520"},
+                            {tag: "science", posts: "243"}
                         ].map(item=>{
+                            const taggedPhotos = photos.filter(photo => photo.hashTags.includes(item.tag))
                             return (
                                 <div className="flex items-center p-4">
-                                    <div className="bg-gray-200 mr-4 w-16 h-11 rounded"></div>
+                                    <div className="bg-gray-200 mr-4 w-16 h-11 rounded">
+                                        <img 
+                                            className="object-cover object-top w-full h-full rounded"
+                                            src={taggedPhotos[0].imageSrc}
+                                            alt="user content"
+                                        />
+                                        
+                                    </div>
                                     <div className="flex flex-col">
                                         <div className="font-bold">
-                                            {item.tag}
+                                            #{item.tag}
                                         </div>
                                         <div className="text-gray-400">
-                                            <b>{item.posts}</b> recent posts
+                                            <b>{taggedPhotos.length}</b> recent posts
                                         </div>
                                     </div>
                                 </div>

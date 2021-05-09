@@ -81,7 +81,7 @@ function Post(props){
         {item.type==='image' && (
             <div className="IMAGE">
                 <img 
-                    className="cover"
+                    className="object-cover"
                     src={item.imageSrc} 
                     alt="user content"/>
             </div>
@@ -92,7 +92,7 @@ function Post(props){
                 {item.caption}
             </div>
             <div className="HASHTAGS my-2.5 px-5 text-gray-500">
-                {item.hashTags.join(" ")}
+                #{item.hashTags.join(" #")}
             </div>
             </>
         )}
