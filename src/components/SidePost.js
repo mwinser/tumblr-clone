@@ -34,10 +34,12 @@ function SidePost(props){
                 </div>
                 <Link to={`${ROUTES.BLOG}/${props.blog.username}`}>
                     <div className="flex-1 flex flex-col justify-center items-start">
-                        <div className="font-bold w-44 overflow-hidden overflow-ellipsis">
+                        <div className="font-bold w-44 whitespace-nowrap overflow-hidden overflow-ellipsis">
                             {props.blog.username}
                         </div>
-                        <div>Untitled</div>
+                        <div className="whitespace-nowrap w-44 overflow-hidden overflow-ellipsis">
+                            {props.blog.subtitle}
+                        </div>
                     </div>
                 </Link>
             </div>

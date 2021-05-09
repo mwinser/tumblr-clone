@@ -180,8 +180,12 @@ function Header(){
                                     src="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
                                 />
                                 <div className="flex-1 flex flex-col text-sm">
-                                    <div className="font-bold">{currentUserData.username}</div>
-                                    <div className="text-gray-500">Untitled</div>
+                                    <div className="font-bold w-40 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                                        {currentUserData.username}
+                                    </div>
+                                    <div className="text-gray-500 w-40 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                                        {currentUserData.subtitle}
+                                    </div>
                                 </div>
                             </div>
 

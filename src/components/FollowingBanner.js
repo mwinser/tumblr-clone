@@ -32,7 +32,7 @@ function FollowingBanner(props){
                         </Link>
                     </div>
                     <div>
-                        Untitled
+                        {blog.subtitle}
                     </div>
                 </div>
             </div>
