@@ -92,7 +92,7 @@ function Post(props){
                 {item.caption}
             </div>
             <div className="HASHTAGS my-2.5 px-5 text-gray-500">
-                #hashtag #post #trending #octothorpe #pound
+                {item.hashTags.join(" ")}
             </div>
             </>
         )}
