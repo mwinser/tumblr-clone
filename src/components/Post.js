@@ -92,7 +92,14 @@ function Post(props){
                 {item.caption}
             </div>
             <div className="HASHTAGS my-2.5 px-5 text-gray-500">
-                #{item.hashTags.join(" #")}
+                {item.hashTags.map(tag=> 
+                    <Link to={`${ROUTES.SEARCH}/${tag}`}>
+                        <i className="hover:underline not-italic">
+                            #{tag} 
+                        </i>
+                        {` `}
+                    </Link>
+                    )}
             </div>
             </>
         )}
