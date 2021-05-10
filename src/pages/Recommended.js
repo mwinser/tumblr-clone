@@ -14,43 +14,43 @@ function Recommended() {
             <Header/>
             <div className="bg-navy max-w-990px mx-auto mt-10 px-2 flex items-start text-white">
                 
-                <div className="FEED flex items-end flex-col w-full max-w-625px">
-                    <div className="w-full flex flex-col">
-                        <div>
-                            <div className="flex font-bold text-lg mb-5">
-                                {[
-                                    {title: "For You", icon: "💖"},
-                                    {title: "Trending", icon: "🚀"},
-                                    {title: "Staff Picks", icon: "🌟"}
-                                ].map(item => {
-                                    return (
-                                        <div key={item.title} className="flex px-4 py-3.5 border-b border-blue-300">
-                                            <div>
-                                                {item.title}
-                                            </div>
-                                            <div className="ml-2">
-                                                {item.icon}
-                                            </div>
+                <div className="MAINCONTENT flex items-end flex-col w-full max-w-625px">
+                    <div className="FEEDHEADER w-full flex flex-col">
+                        
+                        <div className="CATEGORIES flex font-bold text-lg mb-5">
+                            {[
+                                {title: "For You", icon: "💖"},
+                                {title: "Trending", icon: "🚀"},
+                                {title: "Staff Picks", icon: "🌟"}
+                            ].map(item => {
+                                return (
+                                    <div key={item.title} className="flex px-4 py-3.5 border-b border-blue-300">
+                                        <div>
+                                            {item.title}
                                         </div>
-                                    )
-                                    })
-                                }
-                                <div className="flex items-center px-4 py-3.5 border-b border-gray-500">
-                                    <div>
-                                        More
+                                        <div className="ml-2">
+                                            {item.icon}
+                                        </div>
                                     </div>
-                                    <svg className="bg-white rounded-full ml-2 p-0.5" viewBox="0 0 13 20.1" style={{transform: "rotate(90deg)"}} width="15" height="15" fill="#001935"><path d="M0 2.9l7.2 7.2-7.1 7.1L3 20.1l7.1-7.1 2.9-2.9L2.9 0 0 2.9"></path></svg>
+                                )
+                                })
+                            }
+                            <div className="flex items-center px-4 py-3.5 border-b border-gray-500">
+                                <div>
+                                    More
                                 </div>
-                                <div className="flex px-4 py-3.5 flex-1 border-b border-gray-500">
-                                    <div>
-                                        {`      `}
-                                    </div>
-                                    
+                                <svg className="bg-white rounded-full ml-2 p-0.5" viewBox="0 0 13 20.1" style={{transform: "rotate(90deg)"}} width="15" height="15" fill="#001935"><path d="M0 2.9l7.2 7.2-7.1 7.1L3 20.1l7.1-7.1 2.9-2.9L2.9 0 0 2.9"></path></svg>
+                            </div>
+                            <div className="flex px-4 py-3.5 flex-1 border-b border-gray-500">
+                                <div>
+                                    {`      `}
                                 </div>
                                 
                             </div>
+                            
                         </div>
-                        <div className="flex justify-between mb-5">
+                        
+                        <div className="TAGPREVIEW flex justify-between mb-5">
                             {/*tailwind must include the following classNames or build will not include them when dynamically generating classes as below*/}
                             <div className="bg-yellow-400 bg-green-400 bg-indigo-400 bg-red-400 text-yellow-400 text-green-400 text-indigo-400 text-red-400"></div>
                             {[
@@ -89,6 +89,7 @@ function Recommended() {
                         
                         </div>
                     </div>
+                {/*FEED*/}    
                 {currentUserData && photos
                     .filter((photo)=>photo.username!==currentUserData.username)
                     .sort((a,b)=>b.dateCreated-a.dateCreated)
@@ -100,7 +101,7 @@ function Recommended() {
                 }
                 </div>
                 <div className="SIDEBAR relative flex-1 max-w-320px flex flex-col flex-start ml-8 w-80">
-                    <div className="w-full bg-gray-400 bg-opacity-10 rounded mb-4">
+                    <div className="FOLLOWINGTAGS w-full bg-gray-400 bg-opacity-10 rounded mb-4">
                         <div className="flex justify-between border-b border-gray-600 p-4">
                             <div className="font-bold text-lg">
                                 Following
@@ -150,7 +151,7 @@ function Recommended() {
                     </div>
 
                     
-                    <div className="w-full bg-gray-400 bg-opacity-10 rounded mt-4 mb-4">
+                    <div className="BLOGSTOFOLLOW w-full bg-gray-400 bg-opacity-10 rounded mt-4 mb-4">
                         <div className="flex border-b border-gray-600 p-4">
                             <div className="font-bold text-lg">
                                 Check out these blogs
@@ -167,19 +168,8 @@ function Recommended() {
                             </div>
                         </div>
                     </div>
-
-
-
-
-                    
-                        
-                        
-                    
-                    
                 </div>
                 
-
-
             </div>
             
         </>
