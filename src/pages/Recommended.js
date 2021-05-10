@@ -49,6 +49,7 @@ function Recommended() {
                             </div>
                         </div>
                         <div className="flex justify-between mb-5">
+                            <div className="bg-yellow-400 bg-green-400 bg-indigo-400 bg-red-400"></div>
                             {[
                                 {tag: "birds", color: "yellow"},
                                 {tag: "nature", color: "green"},
