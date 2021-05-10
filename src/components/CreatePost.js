@@ -32,6 +32,7 @@ function CreatePost() {
         setTimeout(()=>{
             const preview = document.getElementById('img-preview')
             preview.src = urlInput
+            preview.alt = "url error"
         }, 500)
     }
 
@@ -125,7 +126,11 @@ function CreatePost() {
                     </div>
                 </div>  
                     {showPreview ? 
-                        <img className="cover min-w-72 max-h-112 max-w-full mb-4" id="img-preview" alt="preview upload"/>
+                        <img 
+                        className="IMAGEPREVIEW cover min-w-72 max-h-112 max-w-full mb-4" 
+                        id="img-preview" 
+                        alt="preview loading"
+                        onError={console.log("img error detected")}/>
                     :
                     <>
                         {showUrlInput &&
