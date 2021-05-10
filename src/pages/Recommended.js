@@ -57,7 +57,7 @@ function Recommended() {
                             ].map(item => {
                                 const taggedPhotos = photos.filter(photo => photo.hashTags.includes(item.tag))
                                 return (
-                                    <div className={`bg-${item.color||`blue`}-500 flex flex-col p-2 mr-5 rounded mb-5`}>
+                                    <div className={`bg-${item.color||`blue`}-400 flex flex-col p-2 mr-5 rounded mb-5`}>
                                         <div className={`mb-2 ${item.color === `yellow`? `text-black`:null}`}>
                                             #{item.tag}
                                         </div>
@@ -77,7 +77,7 @@ function Recommended() {
                                             />
                                             </div>
                                         </div>
-                                        <div className={`py-2 px-5 mt-2 text-center ${item.color === `yellow`? `bg-black`:`bg-white`} font-bold text-${item.color||`blue`}-500 rounded`}>Follow</div>
+                                        <div className={`py-2 px-5 mt-2 text-center ${item.color === `yellow`? `bg-black`:`bg-white`} font-bold text-${item.color||`blue`}-400 rounded`}>Follow</div>
                                     </div>
                                     )
                                 })
