@@ -10,10 +10,7 @@ function Post(props){
 
     const item = props.item
     const currentUsername = props.currentUserData.username
-    var isSmall
-    if (props.small) {
-        isSmall = true
-    }
+
     
 
     const [isUserFavorite, setIsUserFavorite] = useState(item.likes.some(user=>user===currentUsername)) 
@@ -35,8 +32,8 @@ function Post(props){
 
 
     return (
-    <div className={`POSTS relative text-black bg-white ${isSmall ? "w-full" : "w-10/12"} rounded mb-5`}>
-        {!isSmall && (
+    <div className={`POSTS relative text-black bg-white ${props.small ? "w-full" : "w-10/12"} rounded mb-5`}>
+        {!props.small && (
             <Link to={`${ROUTES.BLOG}/${item.username}`}>
                 <div className="AVATAR absolute top-0 -left-20 w-16 h-full">
                     <img 
@@ -65,7 +62,7 @@ function Post(props){
                 </div>
                 ) : (
                 <div 
-                    className="FOLLOW cursor-pointer ml-2" 
+                    className="FOLLOW cursor-pointer ml-2 text-blue-400 font-bold" 
                     onClick={()=>{
                         follow(item.username)
                         setIsFollowed(true)
@@ -86,7 +83,7 @@ function Post(props){
                     alt="user content"/>
             </div>
         )}
-        {!isSmall && (
+        {!props.small && (
             <>
             <div className="CAPTION my-4 px-5">
                 {item.caption}
@@ -109,7 +106,7 @@ function Post(props){
                 {item.comments.length} Notes
             </div>
             <div className="ICONS flex justify-between text-gray-500">
-                {!isSmall && (
+                {!props.small && (
                     <>
                     <div className="ml-5 fill-current">
                         <svg viewBox="0 0 17 17" width="21" height="21" ><path d="M2 15l3.17-5.065 4.124-.956c.475-.143.475-.816 0-.96L5.17 7.066 2 2l13 6.5L2 15zm13.894-8.29l-13-6.5A1.996 1.996 0 0 0 .52.655 2 2 0 0 0 .304 3.06L3.71 8.5.303 13.94a2 2 0 0 0 2.59 2.85l13-6.5a2.002 2.002 0 0 0 .001-3.58z"></path></svg>
