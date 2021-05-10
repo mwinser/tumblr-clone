@@ -1,7 +1,9 @@
 import React, {useContext} from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Post from '../components/Post'
 import SidePost from '../components/SidePost'
+import * as ROUTES from '../constants/routes'
 import {DatabaseContext} from '../context/databaseContext'
 
 
@@ -49,7 +51,7 @@ function Recommended() {
                             </div>
                         </div>
                         <div className="flex justify-between mb-5">
-                            {/*tailwind must include following classNames or build will not include them when dynamically generating classes as below*/}
+                            {/*tailwind must include the following classNames or build will not include them when dynamically generating classes as below*/}
                             <div className="bg-yellow-400 bg-green-400 bg-indigo-400 bg-red-400 text-yellow-400 text-green-400 text-indigo-400 text-red-400"></div>
                             {[
                                 {tag: "birds", color: "yellow"},
@@ -125,9 +127,12 @@ function Recommended() {
                                         
                                     </div>
                                     <div className="flex flex-col">
-                                        <div className="font-bold">
-                                            #{item.tag}
-                                        </div>
+                                        <Link to={`${ROUTES.SEARCH}/${item.tag}`}>
+                                            <div className="font-bold hover:underline">
+                                                #{item.tag}
+                                            </div>
+                                        </Link>
+                                        
                                         <div className="text-gray-400">
                                             <b>{taggedPhotos.length}</b> recent posts
                                         </div>
