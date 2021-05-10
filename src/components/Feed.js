@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 
 import {DatabaseContext} from '../context/databaseContext'
 import Post from '../components/Post'
-import CreateMenu from './CreatMenu'
+import CreateMenu from './CreateMenu'
 
 
 
