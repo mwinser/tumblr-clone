@@ -57,27 +57,27 @@ function Recommended() {
                             ].map(item => {
                                 const taggedPhotos = photos.filter(photo => photo.hashTags.includes(item.tag))
                                 return (
-                                    <div className={`bg-${item.color||"blue"}-500 flex flex-col p-2 mr-5 rounded mb-5`}>
-                                        <div className={`mb-2 ${item.color === "yellow"? `text-black`:null}`}>
+                                    <div className={`bg-${item.color||`blue`}-500 flex flex-col p-2 mr-5 rounded mb-5`}>
+                                        <div className={`mb-2 ${item.color === `yellow`? `text-black`:null}`}>
                                             #{item.tag}
                                         </div>
                                         <div className="flex">
                                             <div className="w-14 h-24 bg-white rounded mr-2">
                                                 <img 
                                                     className="object-cover w-full h-full rounded"
-                                                    src={taggedPhotos[0].imageSrc}
-                                                    alt="user content"
+                                                    src={taggedPhotos[0].imageSrc || null}
+                                                    alt="tag preview"
                                                 />
                                             </div>
                                             <div className="w-14 h-24 bg-white rounded m1-2">
                                             <img 
                                                 className="object-cover w-full h-full rounded"
-                                                src={taggedPhotos[1].imageSrc}
-                                                alt="user content"
+                                                src={taggedPhotos[1].imageSrc || null}
+                                                alt="tag preview"
                                             />
                                             </div>
                                         </div>
-                                        <div className={`py-2 px-5 mt-2 text-center ${item.color === "yellow"? `bg-black`:`bg-white`} font-bold text-${item.color||"blue"}-500 rounded`}>Follow</div>
+                                        <div className={`py-2 px-5 mt-2 text-center ${item.color === `yellow`? `bg-black`:`bg-white`} font-bold text-${item.color||`blue`}-500 rounded`}>Follow</div>
                                     </div>
                                     )
                                 })
@@ -150,7 +150,7 @@ function Recommended() {
                             </div>
                         </div>
                         <ul className="py-2.5">
-                            {blogs.sort((a,b)=>b.followers.length-a.followers.length).slice(0,4).map((blog, index)=>(
+                            {currentUserData && blogs.sort((a,b)=>b.followers.length-a.followers.length).slice(0,4).map((blog, index)=>(
                                 <SidePost key={`blog${index}`} blog={blog} currentUserData={currentUserData}/>
                             ))}
                         </ul>

@@ -9,7 +9,6 @@ function CreatePost() {
     const [tags, setTags] = useState('')
     const [urlInput, setUrlInput] = useState('')
     const [showPreview, setShowPreview] = useState(false)
-    const [showRemoveButton, setShowRemoveButton] = useState(false)
     const [showUrlInput, setShowUrlInput] = useState(false)
     const [isUploading, setIsUploading] = useState(false)
 
