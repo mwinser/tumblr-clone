@@ -69,14 +69,14 @@ function Recommended() {
                                             <div className="w-14 h-24 bg-white rounded mr-2">
                                                 <img 
                                                     className="object-cover w-full h-full rounded"
-                                                    src={taggedPhotos[0].imageSrc || null}
+                                                    src={taggedPhotos[0]? taggedPhotos[0].imageSrc : null}
                                                     alt="tag preview"
                                                 />
                                             </div>
                                             <div className="w-14 h-24 bg-white rounded m1-2">
                                             <img 
                                                 className="object-cover w-full h-full rounded"
-                                                src={taggedPhotos[1].imageSrc || null}
+                                                src={taggedPhotos[1]? taggedPhotos[1].imageSrc : null}
                                                 alt="tag preview"
                                             />
                                             </div>
@@ -121,7 +121,7 @@ function Recommended() {
                                     <div className="bg-gray-200 mr-4 w-16 h-11 rounded">
                                         <img 
                                             className="object-cover object-top w-full h-full rounded"
-                                            src={taggedPhotos[0].imageSrc}
+                                            src={taggedPhotos[0]? taggedPhotos[0].imageSrc : null}
                                             alt="user content"
                                         />
                                         
