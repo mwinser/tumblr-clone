@@ -49,7 +49,8 @@ function Recommended() {
                             </div>
                         </div>
                         <div className="flex justify-between mb-5">
-                            <div className="bg-yellow-400 bg-green-400 bg-indigo-400 bg-red-400"></div>
+                            {/*tailwind must include following classNames or build will not include them when dynamically generating classes as below*/}
+                            <div className="bg-yellow-400 bg-green-400 bg-indigo-400 bg-red-400 text-yellow-400 text-green-400 text-indigo-400 text-red-400"></div>
                             {[
                                 {tag: "birds", color: "yellow"},
                                 {tag: "nature", color: "green"},
