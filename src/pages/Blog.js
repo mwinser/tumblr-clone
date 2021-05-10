@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom'
 import {DatabaseContext} from '../context/databaseContext'
 import Post from '../components/Post'
 import Header from '../components/Header'
-import CreateMenu from '../components/CreatMenu'
+import CreateMenu from '../components/CreateMenu'
 
 
 function Blog() {
