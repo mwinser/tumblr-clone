@@ -6,12 +6,13 @@ function CreatePost() {
     
     const {currentUserData, setIsCreateMenuOpen} = useContext(DatabaseContext)
     const [caption, setCaption] = useState('')
+    const [tags, setTags] = useState('')
     const [urlInput, setUrlInput] = useState('')
     const [showPreview, setShowPreview] = useState(false)
+    const [showRemoveButton, setShowRemoveButton] = useState(false)
     const [showUrlInput, setShowUrlInput] = useState(false)
     const [isUploading, setIsUploading] = useState(false)
 
-    // let uploadedImage
 
     function updatePreview (e) {
         setShowPreview(true)
@@ -65,7 +66,7 @@ function CreatePost() {
                 caption: caption,
                 likes: [],
                 comments: [],
-                hashTags: ['firstpost'],
+                hashTags: tags.split(' '),
                 dateCreated: Date.now()
             })
             setIsCreateMenuOpen(false)
@@ -130,7 +131,7 @@ function CreatePost() {
                         className="IMAGEPREVIEW cover min-w-72 max-h-112 max-w-full mb-4" 
                         id="img-preview" 
                         alt="preview loading"
-                        onError={console.log("img error detected")}/>
+                        />
                     :
                     <>
                         {showUrlInput &&
@@ -163,9 +164,17 @@ function CreatePost() {
                 
                 
                     
-                    <div className="mt-1 pt-1 pr-5 pb-2.5 pl-4 w-full text-gray-400">
-                        #tags
-                    </div>
+                    <textarea 
+                        className="resize-none mt-1 pt-1 pr-5 pb-2.5 pl-4 w-full text-gray-400"
+                        value={tags}
+                        onChange={(e)=>setTags(e.target.value)}
+                        id="tags" 
+                        name="tags" 
+                        maxLength='200'
+                        placeholder='Enter tags separated by spaces'
+                    />
+                        
+                    
                     <div className="flex justify-between items-center py-4 px-5 border-t border-gray-200">
                         <div className="font-bold text-white bg-gray-400 py-1 px-2 rounded cursor-pointer" onClick={()=>setIsCreateMenuOpen(false)}>
                             Close
