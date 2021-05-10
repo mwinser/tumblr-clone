@@ -24,7 +24,7 @@ function Recommended() {
                                     {title: "Staff Picks", icon: "🌟"}
                                 ].map(item => {
                                     return (
-                                        <div className="flex px-4 py-3.5 border-b border-blue-300">
+                                        <div key={item.title} className="flex px-4 py-3.5 border-b border-blue-300">
                                             <div>
                                                 {item.title}
                                             </div>
@@ -61,7 +61,7 @@ function Recommended() {
                             ].map(item => {
                                 const taggedPhotos = photos.filter(photo => photo.hashTags.includes(item.tag))
                                 return (
-                                    <div className={`bg-${item.color||`blue`}-400 flex flex-col p-2 mr-5 rounded mb-5`}>
+                                    <div key={item.tag + item.color} className={`bg-${item.color||`blue`}-400 flex flex-col p-2 mr-5 rounded mb-5`}>
                                         <div className={`mb-2 ${item.color === `yellow`? `text-black`:null}`}>
                                             #{item.tag}
                                         </div>
@@ -117,7 +117,7 @@ function Recommended() {
                         ].map(item=>{
                             const taggedPhotos = photos.filter(photo => photo.hashTags.includes(item.tag))
                             return (
-                                <div className="flex items-center p-4">
+                                <div key={item.tag + item.posts} className="flex items-center p-4">
                                     <div className="bg-gray-200 mr-4 w-16 h-11 rounded">
                                         <img 
                                             className="object-cover object-top w-full h-full rounded"
