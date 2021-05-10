@@ -10,6 +10,9 @@ module.exports = {
         ...theme('colors'),
         'navy': '#001935'
       }),
+      minWidth: {
+        '72' : '18rem'
+      },
       maxWidth: {
         '990px': '990px',
         '625px': '625px',
