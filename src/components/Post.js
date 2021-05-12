@@ -41,14 +41,14 @@ function Post(props){
     return (
     <div className={`POSTS relative text-black bg-white ${props.small ? "w-full" : "w-10/12"} rounded mb-5`}>
         {!props.small && (
-            <Link to={`${ROUTES.BLOG}/${item.username}`}>
-                <div className="AVATAR absolute top-0 -left-20 w-16 h-full">
+            <div className="AVATAR absolute top-0 -left-20 w-16 h-full">
+                <Link to={`${ROUTES.BLOG}/${item.username}`}>
                     <img 
                         className="sticky top-16 rounded"
                         alt="avatar" 
                         src="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"/>
-                </div>
-            </Link>
+                </Link>   
+            </div>
         ) }
         
         <div className="HEADER flex justify-between px-5 pt-4 mb-4">
