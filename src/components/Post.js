@@ -6,7 +6,7 @@ import { database } from '../lib/firebase'
 
 
 function Post(props){
-    const {addFavorite, removeFavorite, follow, unfollow} = useContext(DatabaseContext)
+    const {addFavorite, removeFavorite, addComment, follow, unfollow} = useContext(DatabaseContext)
 
     const item = props.item
     const currentUsername = props.currentUserData.username
@@ -16,12 +16,18 @@ function Post(props){
     const [isUserFavorite, setIsUserFavorite] = useState(item.likes.some(user=>user===currentUsername)) 
     const [isFollowed, setIsFollowed] = useState(props.currentUserData.following.some(user=>user===item.username)) 
     const [showCommentBox, setShowCommentBox] = useState(false)
+    const [commentContent, setCommentContent] = useState('')
 
 
     function handleToggleFavorite() {
         isUserFavorite? removeFavorite(item.postId, currentUsername) : addFavorite(item.postId, currentUsername)
         
         setIsUserFavorite(prevState=>!prevState)
+    }
+    function handleSubmitComment(e) {
+        e.preventDefault()
+        addComment(item.postId, currentUsername, commentContent)
+        setCommentContent('')
     }
     async function handleRemovePost(){
         try {
@@ -165,8 +171,16 @@ function Post(props){
                     )}
                 </div>}
                 <div className="REPLYFOOTER flex justify-between py-3.5 px-2.5 text-gray-500">
-                    <div>Send something nice...</div>
-                    <div className="font-bold">Reply</div>
+                    <form onSubmit={(e)=> handleSubmitComment(e)} method="POST">
+                        <input 
+                            type="text" 
+                            value={commentContent}
+                            placeholder= {currentUsername==='guest'? "Guests can't comment.": "Send something nice..."}
+                            onChange={(e)=>setCommentContent(e.target.value)}
+                            />
+                        <button type="submit" disabled={currentUsername==='guest' || !commentContent} className={`font-bold ${ currentUsername==='guest' || !commentContent ? "text-gray-400 cursor-not-allowed": "text-blue-400 cursor-pointer"}`}>Reply</button>
+                    </form>
+                    
                 </div>
                 
             </div>

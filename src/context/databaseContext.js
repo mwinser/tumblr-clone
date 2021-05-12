@@ -45,6 +45,15 @@ function DatabaseContextProvider({children}) {
             likes: FieldValue.arrayRemove(username)
         })
     }
+    function addComment (postId, username, comment){
+        database.photos.doc(postId).update({
+            comments: FieldValue.arrayUnion({
+                comment: comment,
+                username: username,
+                dateCommented: Date.now() })
+            }
+        )
+    }
 
     function follow (usernameToFollow) {
         const followed = blogs.find(blog=>blog.username===usernameToFollow)
@@ -77,7 +86,8 @@ function DatabaseContextProvider({children}) {
             addFavorite,
             removeFavorite,
             follow,
-            unfollow
+            unfollow,
+            addComment
 
         }}>
             {children}
