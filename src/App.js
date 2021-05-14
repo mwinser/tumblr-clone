@@ -2,6 +2,7 @@ import React, {lazy, Suspense} from 'react'
 import {Switch, Route} from 'react-router-dom'
 import * as ROUTES from './constants/routes'
 import PrivateRoute from './components/PrivateRoute'
+import LoadingSpinner from './components/LoadingSpinner'
 
 const Dashboard = lazy(()=> import('./pages/Dashboard'))
 const Signup = lazy(()=> import('./pages/Signup'))
@@ -21,7 +22,7 @@ const Recommended = lazy(()=> import('./pages/Recommended'))
 function App() {
   return (
     <div className="relative min-w-min h-full min-h-screen bg-navy">
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<LoadingSpinner/>}>
         <Switch>
           <PrivateRoute exact path="/" component={Dashboard}/>
           <Route path={ROUTES.LOGIN} component={Login}/>

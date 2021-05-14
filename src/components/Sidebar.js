@@ -4,6 +4,7 @@ import * as ROUTES from '../constants/routes'
 import {DatabaseContext} from '../context/databaseContext'
 import SidePost from './SidePost'
 import Post from './Post'
+import LoadingSpinner from './LoadingSpinner'
 
 
 function Sidebar() {
@@ -53,7 +54,7 @@ function Sidebar() {
 
         
         </div>
-        : <div>Loading...</div>
+        : <LoadingSpinner/>
     )
 
 }

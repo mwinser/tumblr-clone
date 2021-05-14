@@ -3,6 +3,7 @@ import React, {useContext} from 'react'
 import {DatabaseContext} from '../context/databaseContext'
 import Post from '../components/Post'
 import CreateMenu from './CreateMenu'
+import LoadingSpinner from './LoadingSpinner'
 
 
 
@@ -28,7 +29,7 @@ function Feed() {
 
         </div>
         ) : (
-            <div className="text-5xl text-white mr-8">Loading...</div>
+            <LoadingSpinner/>
         )
     )
 }
