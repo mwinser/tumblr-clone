@@ -1,7 +1,8 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
+import Feed from '../components/Feed'
 import Header from '../components/Header'
-import Post from '../components/Post'
+import LoadingSpinner from '../components/LoadingSpinner'
 import SidePost from '../components/SidePost'
 import * as ROUTES from '../constants/routes'
 import MainContainer from '../containers/MainContainer'
@@ -14,10 +15,9 @@ function Recommended() {
         <>
             <Header/>
             <MainContainer>
-                
-                <div className="MAINCONTENT flex items-end flex-col w-full max-w-625px">
-                    <div className="FEEDHEADER w-full flex flex-col">
-                        
+                {currentUserData 
+                    ?
+                    <Feed notUsername={currentUserData.username} hideMenu={true}>
                         <div className="CATEGORIES flex font-bold text-lg mb-5">
                             {[
                                 {title: "For You", icon: "💖"},
@@ -89,18 +89,12 @@ function Recommended() {
                             }
                         
                         </div>
-                    </div>
-                {/*FEED*/}    
-                {currentUserData && photos
-                    .filter((photo)=>photo.username!==currentUserData.username)
-                    .sort((a,b)=>b.dateCreated-a.dateCreated)
-                    .map((item, index)=>(
-                        <Post key={index} item={item} 
-                        currentUserData={currentUserData}
-                        />
-                    ))
+                    
+                    </Feed>
+                    :
+                    <LoadingSpinner/>  
                 }
-                </div>
+                
                 <div className="SIDEBAR relative flex-1 max-w-320px flex flex-col flex-start ml-8 w-80">
                     <div className="FOLLOWINGTAGS w-full bg-gray-400 bg-opacity-10 rounded mb-4">
                         <div className="flex justify-between border-b border-gray-600 p-4">
