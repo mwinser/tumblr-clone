@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import React, {useContext} from 'react'
 import {DatabaseContext} from '../context/databaseContext'
 import Post from '../components/Post'
+import MainContainer from '../containers/MainContainer'
 
 
 function Likes() {
@@ -12,7 +13,7 @@ function Likes() {
         return (
         <>
             <Header/>
-            <div className="bg-navy max-w-990px mx-auto mt-10 px-2 flex items-start text-white">
+            <MainContainer>
                 {currentUserData ? (
                     <div className="FEED flex items-end flex-col w-full max-w-625px">
                         {photos
@@ -36,7 +37,7 @@ function Likes() {
                 )
                 }
                 <Sidebar/>
-            </div>
+            </MainContainer>
         </>
     )
 }

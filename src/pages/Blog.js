@@ -4,6 +4,7 @@ import {DatabaseContext} from '../context/databaseContext'
 import Post from '../components/Post'
 import Header from '../components/Header'
 import CreateMenu from '../components/CreateMenu'
+import MainContainer from '../containers/MainContainer'
 
 
 function Blog() {
@@ -15,7 +16,7 @@ function Blog() {
     return(
         <>
             <Header/>
-            <div className="bg-navy max-w-990px mx-auto mt-10 px-2 flex flex-col items-start text-white">
+            <MainContainer column={true}>
                 
             
                 <div className="FEED flex items-end flex-col w-full max-w-625px">
@@ -42,7 +43,7 @@ function Blog() {
                          </div>
                     }
                 </div>
-            </div>
+            </MainContainer>
         </>
     )
 }

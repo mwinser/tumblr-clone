@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import React, {useContext} from 'react'
 import {DatabaseContext} from '../context/databaseContext'
 import FollowingBanner from '../components/FollowingBanner'
+import MainContainer from '../containers/MainContainer'
 
 
 function Following() {
@@ -12,7 +13,7 @@ function Following() {
         return (
         <>
             <Header/>
-            <div className="bg-navy max-w-990px mx-auto mt-10 px-2 flex items-start text-white">
+            <MainContainer>
                 {currentUserData ? (
                     <div className="FEED flex items-end flex-col w-full max-w-625px">
                         {blogs
@@ -37,7 +38,7 @@ function Following() {
                 )
                 }
                 <Sidebar/>
-            </div>
+            </MainContainer>
         </>
     )
 }

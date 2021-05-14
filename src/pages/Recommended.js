@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Post from '../components/Post'
 import SidePost from '../components/SidePost'
 import * as ROUTES from '../constants/routes'
+import MainContainer from '../containers/MainContainer'
 import {DatabaseContext} from '../context/databaseContext'
 
 
@@ -12,7 +13,7 @@ function Recommended() {
     return (
         <>
             <Header/>
-            <div className="bg-navy max-w-990px mx-auto mt-10 px-2 flex items-start text-white">
+            <MainContainer>
                 
                 <div className="MAINCONTENT flex items-end flex-col w-full max-w-625px">
                     <div className="FEEDHEADER w-full flex flex-col">
@@ -170,7 +171,7 @@ function Recommended() {
                     </div>
                 </div>
                 
-            </div>
+            </MainContainer>
             
         </>
     )

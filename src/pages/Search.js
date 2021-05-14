@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import {DatabaseContext} from '../context/databaseContext'
 import Post from '../components/Post'
 import Header from '../components/Header'
+import MainContainer from '../containers/MainContainer'
 
 
 function Search() {
@@ -15,7 +16,7 @@ function Search() {
         currentUserData ? (
             <>
                 <Header/>
-                <div className="bg-navy max-w-990px mx-auto mt-10 px-2 flex flex-col items-start text-white">
+                <MainContainer column={true}>
                     <div className="SEARCHTERM w-full text-center text-5xl max-w-625px mb-10">
                         #{query}
                     </div>
@@ -32,7 +33,7 @@ function Search() {
                             ))
                         }
                     </div>
-                </div>
+                </MainContainer>
             </>
         ) : (
             <div>Loading...</div>
