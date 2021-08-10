@@ -1,6 +1,8 @@
 import React, {useState, useContext} from 'react'
 import {database, storage} from '../lib/firebase'
 import {DatabaseContext} from '../context/databaseContext'
+import { Link } from 'react-router-dom'
+import * as ROUTES from '../constants/routes'
 
 function CreatePost() {
     
@@ -179,8 +181,20 @@ function CreatePost() {
                             Close
                         </div>
                         {currentUserData.username==='guest' &&
-                            <div className="font bold text-red-700">
+                            <div className="font bold text-center text-red-700">
                                 Guests cannot post
+                                <div className="mt-8 flex items-center justify-center gap-4">
+                                    <button className={`rounded p-2.5 font-bold text-white bg-blue-300`}>
+                                        <Link to={ROUTES.SIGN_UP}>
+                                        Sign up
+                                        </Link>
+                                    </button>
+                                    <button className={`rounded p-2.5 font-bold text-white bg-green-500`}>
+                                        <Link to={ROUTES.LOGIN}>
+                                        Log in
+                                        </Link>
+                                    </button>
+                                </div>
                             </div>
                         }
                         {currentUserData.username==='guest' || isUploading ? 
