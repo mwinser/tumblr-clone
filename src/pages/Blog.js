@@ -17,7 +17,7 @@ function Blog() {
             <Header/>
             <MainContainer column={true}>
                 <div className="USERNAME w-full text-center text-5xl max-w-625px mb-10">
-                    {currentUserData.username}
+                    {blogName}
                 </div>
                 <Feed username={blogName} hideMenu={blogName!==currentUserData.username}/>
             </MainContainer>
