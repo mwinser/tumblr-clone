@@ -92,23 +92,25 @@ export default function AccountMenu() {
                 </div>
             </div>
             <div className="flex flex-col bg-white text-black py-1 pr-5 pl-2.5">
-                <div className="flex">
-                    <div className="flex justify-center items-center px-2.5 py-2">
-                        <img 
-                            className="rounded w-10 h-10 mr-2.5"
-                            alt="avatar" 
-                            src="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                        />
-                        <div className="flex-1 flex flex-col text-sm">
-                            <div className="font-bold w-40 whitespace-nowrap overflow-hidden overflow-ellipsis">
-                                {currentUserData.username}
-                            </div>
-                            <div className="text-gray-500 w-40 whitespace-nowrap overflow-hidden overflow-ellipsis">
-                                {currentUserData.subtitle}
+                <Link to={`${ROUTES.BLOG}/${currentUserData.username}`}>
+                    <div className="flex">
+                        <div className="flex justify-center items-center px-2.5 py-2">
+                            <img 
+                                className="rounded w-10 h-10 mr-2.5"
+                                alt="avatar" 
+                                src="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
+                            />
+                            <div className="flex-1 flex flex-col text-sm">
+                                <div className="font-bold w-40 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                                    {currentUserData.username}
+                                </div>
+                                <div className="text-gray-500 w-40 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                                    {currentUserData.subtitle}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </Link>
                 <ul className="flex flex-col ml-11">
                     <Link to={`${ROUTES.BLOG}/${currentUserData.username}`}>
                         <li className="flex p-1">
