@@ -24,7 +24,7 @@ function Following() {
                                 .filter((blog)=>currentUserData.following.some(followee=>followee===blog.username))
                                 .map((blog, index)=>(
                                     <FollowingBanner 
-                                        key={index} 
+                                        key={blog.dataId} 
                                         blog={blog} 
                                         currentUserData={currentUserData}
                                         />

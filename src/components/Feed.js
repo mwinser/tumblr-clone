@@ -40,8 +40,8 @@ function Feed(props) {
             {filteredPhotos
                 
                 .sort((a,b)=>b.dateCreated-a.dateCreated)
-                .map((item, index)=>(
-                    <Post key={index} item={item} 
+                .map(item=>(
+                    <Post key={item.postId} item={item} 
                     currentUserData={currentUserData}
                     />
                 ))

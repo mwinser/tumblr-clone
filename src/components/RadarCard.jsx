@@ -13,8 +13,8 @@ export default function RadarCard() {
                 {photos
                     .sort((a,b)=>b.likes.length-a.likes.length)
                     .slice(0,1)
-                    .map((item, index)=>(
-                        <Post key={index} item={item} currentUserData={currentUserData} small={true}/>
+                    .map(item=>(
+                        <Post key={item.postId} item={item} currentUserData={currentUserData} small={true}/>
                     ))
                 }
             </div>
