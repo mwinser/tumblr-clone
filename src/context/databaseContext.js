@@ -17,10 +17,8 @@ function DatabaseContextProvider({children}) {
         const unsubUsers = database.users.onSnapshot((doc)=>{
             const blogs = doc.docs.map(doc=>{return {...doc.data(), dataId: doc.id}})
             setBlogs(blogs)
-            setTimeout(()=>{
-                const user = doc.docs.find(doc=>doc.data().emailAddress===currentUser.email)
-                setCurrentUserData({...user.data(), dataId: user.id})
-            },500)
+            const user = doc.docs.find(doc=>doc.data().emailAddress===currentUser.email)
+            setCurrentUserData({...user.data(), dataId: user.id})
         })
         const unsubPhotos = database.photos.onSnapshot((doc)=>{
             const photos = doc.docs.map(doc=>{return {...doc.data(), postId: doc.id}})
