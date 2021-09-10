@@ -110,10 +110,12 @@ export default function AccountMenu() {
                     </div>
                 </div>
                 <ul className="flex flex-col ml-11">
-                    <li className="flex p-1">
-                        <div className="flex-1">Posts</div>
-                        <div>{photos.filter(photo=>photo.username===currentUserData.username).length}</div>
-                    </li>
+                    <Link to={`${ROUTES.BLOG}/${currentUserData.username}`}>
+                        <li className="flex p-1">
+                            <div className="flex-1">Posts</div>
+                            <div>{photos.filter(photo=>photo.username===currentUserData.username).length}</div>
+                        </li>
+                    </Link>
                     <li className="flex p-1">
                         <div className="flex-1">Followers</div>
                     </li>
