@@ -9,7 +9,7 @@ function CreateMenu() {
 
 
 
-            <div className="POSTINGMENU relative flex justify-between text-black bg-white w-10/12 rounded mb-5 py-4 px-1">
+            <div className="POSTINGMENU hidden lg:flex relative justify-between text-black bg-white w-10/12 rounded mb-5 py-4 px-1">
                 <div className="absolute top-0 -left-20 w-16 h-16">
                     
                     <img 

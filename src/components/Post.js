@@ -41,7 +41,7 @@ function Post(props){
     return (
     <div className={`POSTS relative text-black bg-white ${props.small ? "w-full" : "w-10/12"} rounded mb-5`}>
         {!props.small && (
-            <div className="AVATAR absolute top-0 -left-20 w-16 h-full">
+            <div className="AVATAR hidden lg:block absolute top-0 -left-20 w-16 h-full">
                 <Link to={`${ROUTES.BLOG}/${item.username}`}>
                     <img 
                         className="sticky top-16 rounded"

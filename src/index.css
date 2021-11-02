@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ex {
+    stroke:white;
+    stroke-width:3;
+    stroke-linecap: round;
+    transition: transform ease-in-out .5s;
+    transform-origin: 50% 50%;
+  }
+  .top {
+    transform: translateY(-25%)
+  }
+  .bottom {
+    transform: translateY(25%)
+  }
+  .one {
+    transform: rotate(45deg)  
+  }
+  .two {
+    transform: scaleX(.1)
+  }
+  .three {
+    transform: rotate(-45deg)
+  }

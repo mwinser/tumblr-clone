@@ -34,7 +34,7 @@ function Feed(props) {
         currentUserData ? (
 
         
-        <div className="FEED flex items-end flex-col w-full max-w-625px">
+        <div className="FEED flex items-center lg:items-end flex-col w-full max-w-540px lg:max-w-625px">
             {props.children}
             {!props.hideMenu && <CreateMenu/>}
             {filteredPhotos
