@@ -85,7 +85,7 @@ function Post(props){
         {item.type==='image' && (
             <div className="IMAGE">
                 <img 
-                    className="object-cover"
+                    className="object-cover max-w-100.01"
                     src={item.imageSrc} 
                     alt="user content"/>
             </div>
