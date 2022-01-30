@@ -99,7 +99,7 @@ function Post(props){
                 {item.hashTags.map(tag=> 
                     <Link key={tag} to={`${ROUTES.SEARCH}/${tag}`}>
                         <i className="hover:underline not-italic">
-                            #{tag} 
+                            {tag==='' ? null : '#'}{tag} 
                         </i>
                         {` `}
                     </Link>
