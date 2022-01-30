@@ -21,7 +21,7 @@ const Recommended = lazy(()=> import('./pages/Recommended'))
 
 function App() {
   return (
-    <div className="relative min-w-min h-full min-h-screen bg-navy">
+    <div className="relative h-full min-h-screen bg-navy">
       <Suspense fallback={<LoadingSpinner/>}>
         <Switch>
           <PrivateRoute exact path="/" component={Dashboard}/>
