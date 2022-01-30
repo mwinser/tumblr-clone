@@ -19,14 +19,14 @@ function Recommended() {
                 {currentUserData 
                     ?
                     <Feed notUsername={currentUserData.username} hideMenu={true}>
-                        <div className="CATEGORIES flex font-bold text-lg mb-5">
+                        <div className="CATEGORIES flex font-bold text-xs sm:text-lg mb-5">
                             {[
                                 {title: "For You", icon: "💖"},
                                 {title: "Trending", icon: "🚀"},
                                 {title: "Staff Picks", icon: "🌟"}
                             ].map(item => {
                                 return (
-                                    <div key={item.title} className="flex px-4 py-3.5 border-b border-blue-300">
+                                    <div key={item.title} className="flex px-2 sm:px-4 py-3.5 border-b border-blue-300">
                                         <div>
                                             {item.title}
                                         </div>
@@ -43,7 +43,7 @@ function Recommended() {
                                 </div>
                                 <svg className="bg-white rounded-full ml-2 p-0.5" viewBox="0 0 13 20.1" style={{transform: "rotate(90deg)"}} width="15" height="15" fill="#001935"><path d="M0 2.9l7.2 7.2-7.1 7.1L3 20.1l7.1-7.1 2.9-2.9L2.9 0 0 2.9"></path></svg>
                             </div>
-                            <div className="flex px-4 py-3.5 flex-1 border-b border-gray-500">
+                            <div className="flex sm:px-4 py-3.5 flex-1 border-b border-gray-500">
                                 <div>
                                     {`      `}
                                 </div>
