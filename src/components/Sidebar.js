@@ -16,9 +16,9 @@ function Sidebar() {
             <RadarCard/>
             <div className="SPONSOREDCARD sticky top-16">
                 <div className="text-xl font-bold px-2.5 pb-2.5 border-b-2">
-                    Sponsored
+                    Sponsored Posts
                 </div>
-                This space intentionally left blank.
+                <p className="px-2.5 py-2.5"> Site made by: <a href='https://mwinser.com' target="_blank" rel="noreferrer" className="font-bold text-blue-400">Mike Winser</a></p>
             </div>
         </SideBarContainer>
         : <LoadingSpinner/>
