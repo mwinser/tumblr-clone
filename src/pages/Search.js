@@ -19,9 +19,9 @@ function Search() {
                 <Header/>
                 <MainContainer column={true}>
                     <div className="SEARCHTERM w-full text-center text-5xl max-w-625px mb-10">
-                        #{query}
+                        #{query.toLowerCase()}
                     </div>
-                    <Feed query={query} hideMenu={true}/>
+                    <Feed query={query.toLowerCase()} hideMenu={true}/>
                 </MainContainer>
             </>
         ) : (
