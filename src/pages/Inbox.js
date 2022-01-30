@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 function Inbox() {
@@ -24,20 +25,9 @@ function Inbox() {
                         </div>
                     </div>
                 </div>
-             <footer className="text-gray-400 text-sm mx-auto py-5">
-                <ul className="flex justify-center gap-4">
-                    <li>{String.fromCharCode(169)} Tumblr, Inc.</li>
-                    <li>Help</li>
-                    <li>About</li>
-                    <li>Apps</li>
-                    <li>Developers</li>
-                    <li>Themes</li>
-                    <li>Jobs</li>
-                    <li>Legal</li>
-                    <li>Privacy</li>
-                </ul>
-            </footer>
+                <Footer/>
             </div>
+
            
             
         </>
